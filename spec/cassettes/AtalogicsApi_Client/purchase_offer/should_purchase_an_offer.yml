@@ -1,0 +1,160 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"eba80e833d9e5968c9db9ced203a3c2d"'
+      X-Request-Id:
+      - d3218a67-2a26-415d-bc2e-57ae03efb263
+      X-Runtime:
+      - '0.039286'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Thu, 16 Apr 2015 16:56:07 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"693988778183d176b34c06b1a19f9fba6c5e670d38bb32ad736ed16373293481","token_type":"bearer","expires_in":7200}'
+    http_version: 
+  recorded_at: Thu, 16 Apr 2015 16:56:07 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/api/v2/offers
+    body:
+      encoding: UTF-8
+      string: '{"catch_address":{"street":"Maxglaner Hauptstraße 12","postal_code":5020,"city":"Salzburg"},"drop_address":{"street":"Ignaz
+        Harrer Straße 34","postal_code":5020,"city":"Salzburg"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer 693988778183d176b34c06b1a19f9fba6c5e670d38bb32ad736ed16373293481
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1993'
+      Etag:
+      - '"545e879aa6e900a10e70d9a7cecffbd3"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 2701bedd-f2b7-497f-a2d4-36451947bf83
+      X-Runtime:
+      - '0.726036'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Thu, 16 Apr 2015 16:56:07 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU0ODlmNzNhMzIzMzc0MWQwMDBjMDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NDg5Zjc1MzMyMzM3NDFkMDAwZTAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNS0wNC0xNiIsImRyb3BfZGF0ZSI6IjIwMTUtMDQtMTYiLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNS0wNC0xNlQxODo1NjowNy4xOTQrMDI6MDAifQ==","catch_date":"2015-04-16","drop_date":"2015-04-16","city_id":"53abd6dc636f6d71b0010000","fee":{"currency":"eur","amount":5.95},"catch_timeslot":{"window":{"from":"2015-04-16T08:00:00.000+02:00","to":"2015-04-16T22:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"window":{"from":"2015-04-16T22:31:00.000+02:00","to":"2015-04-16T23:59:00.000+02:00"},"type":"range"}},{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU0ODlmNzNhMzIzMzc0MWQwMDBjMDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NDg5Zjc1MzMyMzM3NDFkMDAwZTAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNS0wNC0xNiIsImRyb3BfZGF0ZSI6IjIwMTUtMDQtMTciLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNS0wNC0xNlQxODo1NjowNy4xOTQrMDI6MDAifQ==","catch_date":"2015-04-16","drop_date":"2015-04-17","city_id":"53abd6dc636f6d71b0010000","fee":{"currency":"eur","amount":5.95},"catch_timeslot":{"window":{"from":"2015-04-16T08:00:00.000+02:00","to":"2015-04-16T22:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"window":{"from":"2015-04-17T22:31:00.000+02:00","to":"2015-04-17T23:59:00.000+02:00"},"type":"range"}},{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU0ODlmNzNhMzIzMzc0MWQwMDBjMDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NDg5Zjc1MzMyMzM3NDFkMDAwZTAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNS0wNC0xNyIsImRyb3BfZGF0ZSI6IjIwMTUtMDQtMTciLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNS0wNC0xNlQxODo1NjowNy4xOTQrMDI6MDAifQ==","catch_date":"2015-04-17","drop_date":"2015-04-17","city_id":"53abd6dc636f6d71b0010000","fee":{"currency":"eur","amount":5.95},"catch_timeslot":{"window":{"from":"2015-04-17T08:00:00.000+02:00","to":"2015-04-17T22:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"window":{"from":"2015-04-17T22:31:00.000+02:00","to":"2015-04-17T23:59:00.000+02:00"},"type":"range"}}]'
+    http_version: 
+  recorded_at: Thu, 16 Apr 2015 16:56:07 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/api/v2/shipments
+    body:
+      encoding: UTF-8
+      string: '{"catch_address":{"street":"Maxglaner Hauptstraße 12","postal_code":5020,"city":"Salzburg","name":"Max
+        Mustermann","phone":"123456789"},"drop_address":{"street":"Ignaz Harrer Straße
+        34","postal_code":5020,"city":"Salzburg","name":"Maria Musterfrau","phone":"123456789"},"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU0ODlmNzNhMzIzMzc0MWQwMDBjMDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NDg5Zjc1MzMyMzM3NDFkMDAwZTAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNS0wNC0xNiIsImRyb3BfZGF0ZSI6IjIwMTUtMDQtMTYiLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNS0wNC0xNlQxODo1NjowNy4xOTQrMDI6MDAifQ=="}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer 693988778183d176b34c06b1a19f9fba6c5e670d38bb32ad736ed16373293481
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1086'
+      Etag:
+      - '"2d36eee9929e1896046ccc44d45a8348"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 8e717fed-6be9-46f8-ac3e-f1496edbd5aa
+      X-Runtime:
+      - '0.809035'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Thu, 16 Apr 2015 16:56:08 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0cmFja2luZ19pZCI6IjA2WElHTkFaMzRNTSIsInN0YXRlIjoib3JkZXJl
+        ZCIsIm9yZGVyZWRfYXQiOiIyMDE1LTA0LTE2VDE2OjU2OjA3Ljg0MFoiLCJj
+        YXRjaF9kYXRlIjoiMjAxNS0wNC0xNiIsImRyb3BfZGF0ZSI6IjIwMTUtMDQt
+        MTYiLCJjb2xvcl9pZHgiOjMsIndlYmhvb2tfdXJsIjpudWxsLCJjYXRjaF9h
+        ZGRyZXNzIjp7Im5hbWUiOiJNYXggTXVzdGVybWFubiIsImVtYWlsIjpudWxs
+        LCJwaG9uZSI6IjEyMzQ1Njc4OSIsInN0cmVldCI6Ik1heGdsYW5lciBIYXVw
+        dHN0cmHDn2UgMTIiLCJjaXR5IjoiU2FsemJ1cmciLCJwb3N0YWxfY29kZSI6
+        IjUwMjAiLCJjb3VudHJ5Ijoiw5ZzdGVycmVpY2giLCJjb21wYW55X25hbWUi
+        Om51bGwsImFkZGl0aW9uYWxfaW5mbyI6bnVsbCwibGF0Ijo0Ny43OTYzOTQ5
+        LCJsbmciOjEzLjAyNDE4MzN9LCJkcm9wX2FkZHJlc3MiOnsibmFtZSI6Ik1h
+        cmlhIE11c3RlcmZyYXUiLCJlbWFpbCI6bnVsbCwicGhvbmUiOiIxMjM0NTY3
+        ODkiLCJzdHJlZXQiOiJJZ25heiBIYXJyZXIgU3RyYcOfZSAzNCIsImNpdHki
+        OiJTYWx6YnVyZyIsInBvc3RhbF9jb2RlIjoiNTAyMCIsImNvdW50cnkiOiLD
+        lnN0ZXJyZWljaCIsImNvbXBhbnlfbmFtZSI6bnVsbCwiYWRkaXRpb25hbF9p
+        bmZvIjpudWxsLCJsYXQiOjQ3LjgxMTQ5OTksImxuZyI6MTMuMDMwODYyNH0s
+        ImV4dHJhX3NlcnZpY2VzIjpbXSwiaWQiOiI1NTJmZTlhNzc0NzU3OGNiZDEx
+        NjAxMDAiLCJjYW5jZWxhYmxlPyI6dHJ1ZSwiY29sb3IiOnsibmFtZSI6InB1
+        cnBsZSIsInZhbHVlIjoiIzgwMDA4MCJ9LCJuZWVkc19hX2NvdXJpZXIiOnRy
+        dWUsImNhdGNoX3RpbWVzbG90Ijp7IndpbmRvdyI6eyJmcm9tIjoiMjAxNS0w
+        NC0xNlQwODowMDowMC4wMDArMDI6MDAiLCJ0byI6IjIwMTUtMDQtMTZUMjI6
+        MzA6MDAuMDAwKzAyOjAwIn0sInR5cGUiOiJyYW5nZSJ9LCJkcm9wX3RpbWVz
+        bG90Ijp7IndpbmRvdyI6eyJmcm9tIjoiMjAxNS0wNC0xNlQyMjozMTowMC4w
+        MDArMDI6MDAiLCJ0byI6IjIwMTUtMDQtMTZUMjM6NTk6MDAuMDAwKzAyOjAw
+        In0sInR5cGUiOiJyYW5nZSJ9LCJ6b25lIjoiU2FsemJ1cmciLCJjb3VyaWVy
+        cyI6W119
+    http_version: 
+  recorded_at: Thu, 16 Apr 2015 16:56:08 GMT
+recorded_with: VCR 2.9.3

@@ -29,71 +29,24 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - '"5ea9e76228d860aa1bed4173f6fe4ef8"'
+      - '"ccb69c20212d565e58094ed16ba78ebf"'
       X-Request-Id:
-      - 198e3149-ce1e-4242-9c95-f1258fef73c3
+      - b3830260-1412-4cec-9679-0e41dbf9bf26
       X-Runtime:
-      - '0.035289'
+      - '0.031291'
       Connection:
       - close
       Server:
       - thin
       Date:
-      - Thu, 16 Apr 2015 15:13:16 GMT
+      - Thu, 16 Apr 2015 16:56:09 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"57d8385cc885cbf70eec8d27eb69b71c5467a3cadfd425a1d22e267cec9d38be","token_type":"bearer","expires_in":7200}'
+      string: '{"access_token":"13497380d51625227adfe4bf67aa5d434e9aaa67a0a844c812618f47668607f7","token_type":"bearer","expires_in":7200}'
     http_version: 
-  recorded_at: Thu, 16 Apr 2015 15:13:16 GMT
-- request:
-    method: post
-    uri: http://localhost:3000/oauth/token
-    body:
-      encoding: UTF-8
-      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Content-Type-Options:
-      - nosniff
-      Cache-Control:
-      - no-store
-      Pragma:
-      - no-cache
-      Content-Type:
-      - application/json; charset=utf-8
-      Etag:
-      - '"c972ae5b0955bcc120e1e838515c2669"'
-      X-Request-Id:
-      - 4acd6008-80f2-4218-a678-af099d919771
-      X-Runtime:
-      - '0.039318'
-      Connection:
-      - close
-      Server:
-      - thin
-      Date:
-      - Thu, 16 Apr 2015 15:13:16 GMT
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: UTF-8
-      string: '{"access_token":"ad0bbf9b1cbffd992e934bf5d14e4906dbb0601b254faabe3c5f272014013634","token_type":"bearer","expires_in":7200}'
-    http_version: 
-  recorded_at: Thu, 16 Apr 2015 15:13:16 GMT
+  recorded_at: Thu, 16 Apr 2015 16:56:09 GMT
 - request:
     method: post
     uri: http://localhost:3000/api/v2/addresses/single/check
@@ -106,7 +59,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - bearer ad0bbf9b1cbffd992e934bf5d14e4906dbb0601b254faabe3c5f272014013634
+      - bearer 13497380d51625227adfe4bf67aa5d434e9aaa67a0a844c812618f47668607f7
   response:
     status:
       code: 201
@@ -121,18 +74,18 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 138ca5af-05e7-44ca-b07e-15b209d7f319
+      - 754967ce-1986-458b-95e4-d13f3b50af6d
       X-Runtime:
-      - '0.048122'
+      - '0.047038'
       Connection:
       - close
       Server:
       - thin
       Date:
-      - Thu, 16 Apr 2015 15:13:16 GMT
+      - Thu, 16 Apr 2015 16:56:09 GMT
     body:
       encoding: UTF-8
       string: '{"success":true}'
     http_version: 
-  recorded_at: Thu, 16 Apr 2015 15:13:16 GMT
+  recorded_at: Thu, 16 Apr 2015 16:56:09 GMT
 recorded_with: VCR 2.9.3

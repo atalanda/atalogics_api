@@ -29,22 +29,22 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - '"a8b8fa5b079442eb81aa6704541ebfbe"'
+      - '"5f8021b28308fe4e8bdbd694d1f0fe99"'
       X-Request-Id:
-      - 04408a6b-a436-4ec2-a199-9091ddd53d1e
+      - d79280f9-d4b5-4adc-94d3-788fcd5d154b
       X-Runtime:
-      - '0.013671'
+      - '0.074495'
       Connection:
       - close
       Server:
       - thin
       Date:
-      - Thu, 16 Apr 2015 13:58:26 GMT
+      - Thu, 16 Apr 2015 16:56:02 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"83c4d60c815183220a05153d5029333f6b534f9c3117e663446109f6cde6d59e","token_type":"bearer","expires_in":7200}'
+      string: '{"access_token":"bcdf3a33fce08b4309bc9bf4a8eddbcca9f2dbdfc43a8492ec9f4aa8df2553a2","token_type":"bearer","expires_in":7200}'
     http_version: 
-  recorded_at: Thu, 16 Apr 2015 13:58:26 GMT
+  recorded_at: Thu, 16 Apr 2015 16:56:02 GMT
 recorded_with: VCR 2.9.3

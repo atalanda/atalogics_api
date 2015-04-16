@@ -27,19 +27,19 @@ describe AtalogicsApi::Auth do
     end
 
     it "should NOT call for a new token, when a token is passed" do
-      expect_any_instance_of(AtalogicsApi::Auth).not_to receive(:get_auth_token)
+      expect_any_instance_of(AtalogicsApi::Auth).not_to receive(:get_access_token)
       auth = AtalogicsApi::Auth.new "access_token"
     end
 
     it "should call for a new token, when no access_token is set" do
-      expect_any_instance_of(AtalogicsApi::Auth).to receive(:get_auth_token)
+      expect_any_instance_of(AtalogicsApi::Auth).to receive(:get_access_token)
       auth = AtalogicsApi::Auth.new
     end
 
     it "should fetch a new token when initialize", :vcr do
       auth = AtalogicsApi::Auth.new
       expect(auth.response.code).to eq(200)
-      expect(auth.access_token).to eq("83c4d60c815183220a05153d5029333f6b534f9c3117e663446109f6cde6d59e")
+      expect(auth.access_token.length).to be > 15
       expect(auth.token_type).to eq("bearer")
       expect(auth.expires_in).to eq(7200)
     end
@@ -52,13 +52,6 @@ describe AtalogicsApi::Auth do
       expect {
         AtalogicsApi::Auth.new
       }.to raise_error AtalogicsApi::Auth::AuthenticationFailed
-    end
-
-    it "should raise an error, when other things went wrong, and include the response body", :vcr do
-      AtalogicsApi::Auth.base_uri("http://localhost:3000/oauth/token_wrong")
-      expect {
-        AtalogicsApi::Auth.new
-      }.to raise_error AtalogicsApi::Auth::ApiError, /undefined local variable or method/
     end
   end
 end
