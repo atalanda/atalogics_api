@@ -4,6 +4,7 @@ module AtalogicsApi
     class ApiError < StandardError; end
 
     include HTTParty
+    include HttpartySetup
     OAUTH_URL = '/oauth/token'
 
     attr_reader :access_token, :token_type, :expires_in, :response, :code
@@ -38,12 +39,6 @@ module AtalogicsApi
       @expires_in = response["expires_in"]
 
       return @access_token
-    end
-
-    private
-    def setup_httparty
-      self.class.headers 'Accept' => 'application/json'
-      self.class.headers 'Content-Type' => 'application/json'
     end
   end
 end

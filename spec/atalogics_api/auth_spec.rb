@@ -13,7 +13,7 @@ describe AtalogicsApi::Auth do
 
     it "should get the base_uri and change it when the config changes" do
       AtalogicsApi::Auth.set_base_uri
-      expect(AtalogicsApi::Auth.base_uri).to eq("https://beta.atalogics.com/oauth/token")
+      expect(AtalogicsApi::Auth.base_uri).to eq("http://localhost:3000/oauth/token")
 
       AtalogicsApi.configure do |config|
         config.sandbox_mode = true
