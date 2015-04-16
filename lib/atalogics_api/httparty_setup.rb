@@ -1,6 +1,6 @@
 module AtalogicsApi
   module HttpartySetup
-    def setup_httparty
+    def add_json_header
       self.class.headers 'Accept' => 'application/json'
       self.class.headers 'Content-Type' => 'application/json'
     end

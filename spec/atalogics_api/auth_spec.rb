@@ -38,7 +38,7 @@ describe AtalogicsApi::Auth do
 
     it "should fetch a new token when initialize", :vcr do
       auth = AtalogicsApi::Auth.new
-      expect(auth.code).to eq(200)
+      expect(auth.response.code).to eq(200)
       expect(auth.access_token).to eq("83c4d60c815183220a05153d5029333f6b534f9c3117e663446109f6cde6d59e")
       expect(auth.token_type).to eq("bearer")
       expect(auth.expires_in).to eq(7200)

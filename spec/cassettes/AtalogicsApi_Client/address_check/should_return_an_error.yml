@@ -1,0 +1,138 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"c7e6d36f84e7657ceef2156758add398"'
+      X-Request-Id:
+      - af7a4999-4561-4cb9-b7b7-5e31c6c177d2
+      X-Runtime:
+      - '0.037465'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Thu, 16 Apr 2015 15:13:16 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"33e953ed9100f007de0d8fa0970fdd9355708a0b3c9b0b307811d13c5a3a06d1","token_type":"bearer","expires_in":7200}'
+    http_version: 
+  recorded_at: Thu, 16 Apr 2015 15:13:16 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"31256b6cc2a78a180789c2fafaaf7168"'
+      X-Request-Id:
+      - b5ec3d4c-3e2a-436b-a433-3b871c5e690f
+      X-Runtime:
+      - '0.120058'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Thu, 16 Apr 2015 15:13:16 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"651aa4c70288728cb9460d20b28e80368b4d5e432f0ad3f7d7c34469ede61c0a","token_type":"bearer","expires_in":7200}'
+    http_version: 
+  recorded_at: Thu, 16 Apr 2015 15:13:16 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/api/v2/addresses/single/check
+    body:
+      encoding: UTF-8
+      string: '{"street":"Fakestreet 12","postal_code":31415,"city":"Faketown"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer 651aa4c70288728cb9460d20b28e80368b4d5e432f0ad3f7d7c34469ede61c0a
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '50'
+      Etag:
+      - '"25cfba6f5f2b9600e26ab52b0576d24b"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 33577760-41ad-44ac-aae3-7d7662dd7fba
+      X-Runtime:
+      - '0.032714'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Thu, 16 Apr 2015 15:13:16 GMT
+    body:
+      encoding: UTF-8
+      string: '{"error":["Adresse konnte nicht gefunden werden"]}'
+    http_version: 
+  recorded_at: Thu, 16 Apr 2015 15:13:16 GMT
+recorded_with: VCR 2.9.3
