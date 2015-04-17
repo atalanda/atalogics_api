@@ -3,8 +3,7 @@ module AtalogicsApi
   class MissingClientId < StandardError; end
   class MissingClientSecret < StandardError; end
 
-  # PRODUCTION_BASE_URL = "https://beta.atalogics.com"
-  PRODUCTION_BASE_URL = "http://localhost:3000"
+  PRODUCTION_BASE_URL = "https://beta.atalogics.com"
   SANDBOX_BASE_URL = "https://sandbox.atalogics.com"
   API_URL = "/api/v2"
 
@@ -33,7 +32,7 @@ module AtalogicsApi
 
     def base_url
       valid_config?
-      config.sandbox_mode ? SANDBOX_BASE_URL : PRODUCTION_BASE_URL
+      config.sandbox_mode ? sandbox_base_url : production_base_url
     end
 
     private
@@ -41,6 +40,14 @@ module AtalogicsApi
       raise MissingConfiguration if !config
       raise MissingClientId if !config.client_id || config.client_id==""
       raise MissingClientSecret if !config.client_secret || config.client_secret==""
+    end
+
+    def production_base_url
+      config.production_base_url || PRODUCTION_BASE_URL
+    end
+
+    def sandbox_base_url
+      config.sandbox_base_url || SANDBOX_BASE_URL
     end
   end
 
@@ -54,7 +61,7 @@ module AtalogicsApi
   end
 
   class Config
-    attr_accessor :client_id, :client_secret, :sandbox_mode
+    attr_accessor :client_id, :client_secret, :sandbox_mode, :production_base_url, :sandbox_base_url
     def initialize
       @sandbox_mode = false
     end

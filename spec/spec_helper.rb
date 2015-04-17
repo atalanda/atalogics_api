@@ -32,6 +32,7 @@ def real_configuration
   AtalogicsApi.configure do |config|
     config.client_id = "bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53"
     config.client_secret = "2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5"
+    config.production_base_url = "http://localhost:3000"
   end
 end
 
