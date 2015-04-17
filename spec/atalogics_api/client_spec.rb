@@ -14,9 +14,9 @@ describe AtalogicsApi::Client do
 
   it "should refresh the access_token", :vcr do
     client = AtalogicsApi::Client.new
-    old_access_token = client.auth.access_token
+    old_access_token = client.access_token
     client.refresh_access_token
-    expect(client.auth.access_token).not_to eq(old_access_token)
+    expect(client.access_token).not_to eq(old_access_token)
   end
 
   describe 'address_check', :vcr do

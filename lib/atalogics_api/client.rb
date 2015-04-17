@@ -27,6 +27,12 @@ module AtalogicsApi
       @auth.access_token
     end
 
+    # Returns the access_token from the auth class
+    # @return [String] an access_token
+    def access_token
+      auth.access_token
+    end
+
     # Performs an address check
     # @param address_parts [Hash] Hash with address parts
     # @option address_parts [String] :street A street
