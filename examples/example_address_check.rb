@@ -12,7 +12,7 @@ client = AtalogicsApi::Client.new
 access_token = client.access_token
 puts "access_token: #{access_token}"
 
-# renew your access token
+# refresh your access token
 access_token = client.refresh_access_token
 puts "new access_token: #{access_token}"
 

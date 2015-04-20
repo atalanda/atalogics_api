@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/api/v2/addresses/single/check
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - EXPIRED_TOKEN
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json
+      Www-Authenticate:
+      - OAuth realm='OAuth API', error='Access token invalid'
+      Content-Length:
+      - '50'
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - ca8d780e-7cc7-4a07-ae98-fc4bccf56dad
+      X-Runtime:
+      - '0.011312'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Mon, 20 Apr 2015 12:19:26 GMT
+    body:
+      encoding: UTF-8
+      string: '{"state":"error","message":"Access token invalid"}'
+    http_version: 
+  recorded_at: Mon, 20 Apr 2015 12:19:26 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"wrong_client_id","client_secret":"wrong_client_secret","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_client", error_description="Client
+        authentication failed due to unknown client, no client authentication included,
+        or unsupported authentication method."
+      X-Request-Id:
+      - a9627a65-3571-4d60-9424-8e8e9d900542
+      X-Runtime:
+      - '0.011003'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Mon, 20 Apr 2015 12:19:26 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"error":"invalid_client","error_description":"Client authentication
+        failed due to unknown client, no client authentication included, or unsupported
+        authentication method."}'
+    http_version: 
+  recorded_at: Mon, 20 Apr 2015 12:19:26 GMT
+recorded_with: VCR 2.9.3

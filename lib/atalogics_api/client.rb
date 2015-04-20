@@ -10,10 +10,13 @@ module AtalogicsApi
     attr_reader :auth
 
     # Initializes a client
-    # @param access_token [String, nil] When passed and valid, no new access_token will be generated
+    # @param options [Hash] options Hash
+    # @option options [String] :access_token Optional access_token to re-used
+    # @option options [Boolean] :auto_refresh_access_token When set to true, it will automatically refresh the access_token, onece it has expired or is revoked
     # @return [Client]
     def initialize options={}
       @auth = Auth.new options[:access_token]
+      @auto_refresh_access_token = options[:auto_refresh_access_token] || false
       add_json_header
       add_auth_header
       set_base_uri
@@ -22,7 +25,7 @@ module AtalogicsApi
     # Refreshes the access_token
     # @return [String] an access_token
     def refresh_access_token
-      @auth.get_access_token
+      @auth.refresh_access_token
       add_auth_header
       @auth.access_token
     end
@@ -40,8 +43,7 @@ module AtalogicsApi
     # @option address_parts [String] :city Name of the city
     # @return [HTTParty::Response]
     def address_check address_parts
-      response = self.class.post("/addresses/single/check", body: address_parts.to_json)
-      raise_if_error(response)
+      perform_api_action("/addresses/single/check", body: address_parts.to_json)
     end
 
     # Wrapper for address check, which returns just a boolean value
@@ -52,7 +54,6 @@ module AtalogicsApi
     # @return [Boolean]
     def in_delivery_range? address_parts
       response = address_check(address_parts)
-      raise_if_error(response)
       return false unless response
       response["success"]
     end
@@ -61,16 +62,28 @@ module AtalogicsApi
     # @param hash [Hash] Hash with catch and drop information (see https://swagger.atalanda.com/#!/offers/POST_offers_format for all available options)
     # @return [HTTParty::Response]
     def offers hash
-      response = self.class.post("/offers", body: hash.to_json)
-      raise_if_error(response)
+      perform_api_action("/offers", body: hash.to_json)
     end
 
     # Purchases a shipment, based on an offer_id
     # @param hash [Hash] Hash with offer_id, catch and drop information (see https://swagger.atalanda.com/#!/shipments/POST_shipments_format for all available options)
     # @return [HTTParty::Response]
     def purchase_offer hash
-      response = self.class.post("/shipments", body: hash.to_json)
-      raise_if_error(response)
+      perform_api_action("/shipments", body: hash.to_json)
+    end
+
+    def perform_api_action *args
+      response = self.class.post(*args)
+      begin
+        raise_if_error response
+      rescue Errors::AuthenticationFailed => e
+        if @auto_refresh_access_token
+          refresh_access_token
+          response = self.class.post(*args)
+        end
+        raise_if_error response
+      end
+      response
     end
 
     private

@@ -10,4 +10,8 @@ require 'atalogics_api/client'
 #
 # @author Hubert Hoelzl
 module AtalogicsApi
+  class Errors
+    class AuthenticationFailed < StandardError; end
+    class ApiError < StandardError; end
+  end
 end

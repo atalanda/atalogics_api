@@ -19,6 +19,25 @@ describe AtalogicsApi::Client do
     expect(client.access_token).not_to eq(old_access_token)
   end
 
+  describe 'auto_refresh_access_token', :vcr do
+    it "should auto refresh the access_token, when option is set" do
+      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN", auto_refresh_access_token: true
+      client.address_check({})
+      expect(client.access_token.length).to be > 20
+    end
+
+    it "should raise an authentication error, after refresh of the token" do
+      AtalogicsApi.configure do |config|
+        config.client_id = 'wrong_client_id'
+        config.client_secret = 'wrong_client_secret'
+      end
+      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN", auto_refresh_access_token: true
+      expect {
+        client.address_check({})
+      }.to raise_error AtalogicsApi::Errors::AuthenticationFailed
+    end
+  end
+
   describe 'address_check', :vcr do
     it "should return success" do
       client = AtalogicsApi::Client.new

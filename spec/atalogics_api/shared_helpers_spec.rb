@@ -28,19 +28,19 @@ describe AtalogicsApi::SharedHelpers do
 
     context '401' do
       let(:code) { 401 }
-      let(:error_class) { AtalogicsApi::Auth::AuthenticationFailed }
+      let(:error_class) { AtalogicsApi::Errors::AuthenticationFailed }
       it_behaves_like 'raise_errors'
     end
 
     context '403' do
       let(:code) { 403 }
-      let(:error_class) { AtalogicsApi::Auth::AuthenticationFailed }
+      let(:error_class) { AtalogicsApi::Errors::AuthenticationFailed }
       it_behaves_like 'raise_errors'
     end
 
     context '500' do
       let(:code) { 500 }
-      let(:error_class) { AtalogicsApi::Auth::ApiError }
+      let(:error_class) { AtalogicsApi::Errors::ApiError }
       it_behaves_like 'raise_errors'
     end
 

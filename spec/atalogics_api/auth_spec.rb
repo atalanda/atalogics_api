@@ -27,12 +27,12 @@ describe AtalogicsApi::Auth do
     end
 
     it "should NOT call for a new token, when a token is passed" do
-      expect_any_instance_of(AtalogicsApi::Auth).not_to receive(:get_access_token)
+      expect_any_instance_of(AtalogicsApi::Auth).not_to receive(:refresh_access_token)
       auth = AtalogicsApi::Auth.new "access_token"
     end
 
     it "should call for a new token, when no access_token is set" do
-      expect_any_instance_of(AtalogicsApi::Auth).to receive(:get_access_token)
+      expect_any_instance_of(AtalogicsApi::Auth).to receive(:refresh_access_token)
       auth = AtalogicsApi::Auth.new
     end
 
@@ -51,7 +51,7 @@ describe AtalogicsApi::Auth do
       end
       expect {
         AtalogicsApi::Auth.new
-      }.to raise_error AtalogicsApi::Auth::AuthenticationFailed
+      }.to raise_error AtalogicsApi::Errors::AuthenticationFailed
     end
   end
 end

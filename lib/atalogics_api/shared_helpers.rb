@@ -7,8 +7,8 @@ module AtalogicsApi
 
     def raise_if_error response
       code = response.code
-      raise Auth::AuthenticationFailed.new(response.body) if code==401 || code==403
-      raise Auth::ApiError.new(response.body) if code==500
+      raise Errors::AuthenticationFailed.new(response.body) if code==401 || code==403
+      raise Errors::ApiError.new(response.body) if code==500
       response
     end
   end
