@@ -38,6 +38,21 @@ describe AtalogicsApi::Client do
     end
   end
 
+  describe 'on_access_token_change', :vcr do
+    it "should call the given block, when a token has changed" do
+      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN"
+      block_called = false
+      client.on_access_token_change do |access_token, token_type, expires_in|
+        expect(access_token.length).to be > 20
+        expect(token_type).to eq("bearer")
+        expect(expires_in).to be > 1000
+        block_called = true
+      end
+      client.refresh_access_token
+      expect(block_called).to be(true)
+    end
+  end
+
   describe 'address_check', :vcr do
     it "should return success" do
       client = AtalogicsApi::Client.new

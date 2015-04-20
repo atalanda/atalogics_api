@@ -27,7 +27,18 @@ module AtalogicsApi
     def refresh_access_token
       @auth.refresh_access_token
       add_auth_header
+
+      if @token_callback
+        @token_callback.call(@auth.access_token, @auth.token_type, @auth.expires_in)
+      end
+
       @auth.access_token
+    end
+
+    # Calls the given block, when the token has changed
+    # @param callback [Proc] A block that is called, when the token has changed
+    def on_access_token_change &callback
+      @token_callback = callback
     end
 
     # Returns the access_token from the auth class

@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - '"f78e75078035d4f4cb106916c22cde7e"'
+      X-Request-Id:
+      - 9de2524f-ea99-4879-9e80-d3795006f572
+      X-Runtime:
+      - '0.012692'
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Mon, 20 Apr 2015 12:46:41 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"d45467d186f199f13c4619709bef5a5111a79c762769d54cb0a4b393bf0d4aed","token_type":"bearer","expires_in":7200}'
+    http_version: 
+  recorded_at: Mon, 20 Apr 2015 12:46:41 GMT
+recorded_with: VCR 2.9.3
