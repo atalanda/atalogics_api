@@ -33,6 +33,20 @@ describe AtalogicsApi::Client do
     end
   end
 
+  describe "in_delivery_range?", :vcr do
+    it "should return true" do
+      client = AtalogicsApi::Client.new
+      response = client.in_delivery_range? street: "Maxglaner Haupstr. 17", postal_code: 5020, city: "Salzburg"
+      expect(response).to be(true)
+    end
+
+    it "should return false" do
+      client = AtalogicsApi::Client.new
+      response = client.in_delivery_range? street: "Fakestreet 12", postal_code: 31415, city: "Faketown"
+      expect(response).to be(false)
+    end
+  end
+
   describe 'offers', :vcr do
     it "should return offers" do
       hash = {

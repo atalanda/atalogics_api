@@ -43,6 +43,18 @@ module AtalogicsApi
       self.class.post("/addresses/single/check", body: address_parts.to_json)
     end
 
+    # Wrapper for address check, which returns just a boolean value
+    # @param address_parts [Hash] Hash with address parts
+    # @option address_parts [String] :street A street
+    # @option address_parts [String] :postal_code A postal or zip code
+    # @option address_parts [String] :city Name of the city
+    # @return [Boolean]
+    def in_delivery_range? address_parts
+      response = address_check(address_parts)
+      return false unless response
+      response["success"]
+    end
+
     # Returns all offers that are available, based on the passed hash
     # @param hash [Hash] Hash with catch and drop information (see https://swagger.atalanda.com/#!/offers/POST_offers_format for all available options)
     # @return [HTTParty::Response]
