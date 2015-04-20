@@ -5,7 +5,7 @@ module AtalogicsApi
   # @attr_reader [AtalogicsApi::Auth] auth The currently used auth instance
   class Client
     include HTTParty
-    include HttpartySetup
+    include SharedHelpers
 
     attr_reader :auth
 
@@ -40,7 +40,8 @@ module AtalogicsApi
     # @option address_parts [String] :city Name of the city
     # @return [HTTParty::Response]
     def address_check address_parts
-      self.class.post("/addresses/single/check", body: address_parts.to_json)
+      response = self.class.post("/addresses/single/check", body: address_parts.to_json)
+      raise_if_error(response)
     end
 
     # Wrapper for address check, which returns just a boolean value
@@ -51,6 +52,7 @@ module AtalogicsApi
     # @return [Boolean]
     def in_delivery_range? address_parts
       response = address_check(address_parts)
+      raise_if_error(response)
       return false unless response
       response["success"]
     end
@@ -59,14 +61,16 @@ module AtalogicsApi
     # @param hash [Hash] Hash with catch and drop information (see https://swagger.atalanda.com/#!/offers/POST_offers_format for all available options)
     # @return [HTTParty::Response]
     def offers hash
-      self.class.post("/offers", body: hash.to_json)
+      response = self.class.post("/offers", body: hash.to_json)
+      raise_if_error(response)
     end
 
     # Purchases a shipment, based on an offer_id
     # @param hash [Hash] Hash with offer_id, catch and drop information (see https://swagger.atalanda.com/#!/shipments/POST_shipments_format for all available options)
     # @return [HTTParty::Response]
     def purchase_offer hash
-      self.class.post("/shipments", body: hash.to_json)
+      response = self.class.post("/shipments", body: hash.to_json)
+      raise_if_error(response)
     end
 
     private

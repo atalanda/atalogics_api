@@ -12,7 +12,7 @@ module AtalogicsApi
     class ApiError < StandardError; end
 
     include HTTParty
-    include HttpartySetup
+    include SharedHelpers
     OAUTH_URL = '/oauth/token'
 
     attr_reader :access_token, :token_type, :expires_in, :response
