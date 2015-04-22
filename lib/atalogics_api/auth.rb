@@ -14,9 +14,11 @@ module AtalogicsApi
 
     attr_reader :access_token, :token_type, :expires_in, :response
 
-    def initialize access_token=nil
+    def initialize access_token=nil, token_type=nil
+      raise Errors::AccessTokenAndTokenTypeMustBeSet if (access_token && !token_type) || (!access_token && token_type)
       self.class.set_base_uri
       add_json_header
+      @token_type = token_type
       @access_token = access_token || refresh_access_token
     end
 

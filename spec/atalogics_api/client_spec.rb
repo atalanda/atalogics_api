@@ -6,9 +6,10 @@ describe AtalogicsApi::Client do
   end
 
   describe 'initialize' do
-    it "should pass an access_token to the auth class" do
-      client = AtalogicsApi::Client.new access_token: "some_access_token"
+    it "should pass an access_token and token_type to the auth class" do
+      client = AtalogicsApi::Client.new access_token: "some_access_token", token_type: "token_type"
       expect(client.auth.access_token).to eq("some_access_token")
+      expect(client.auth.token_type).to eq("token_type")
     end
   end
 
@@ -21,17 +22,17 @@ describe AtalogicsApi::Client do
 
   describe 'auto_refresh_access_token', :vcr do
     it "should auto refresh the access_token, when option is set" do
-      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN", auto_refresh_access_token: true
+      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN", token_type: "bearer", auto_refresh_access_token: true
       client.address_check({})
       expect(client.access_token.length).to be > 20
     end
 
-    it "should raise an authentication error, after refresh of the token" do
+    it "should raise an authentication error, after unsuccessful refresh of the token" do
       AtalogicsApi.configure do |config|
         config.client_id = 'wrong_client_id'
         config.client_secret = 'wrong_client_secret'
       end
-      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN", auto_refresh_access_token: true
+      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN", token_type: "bearer", auto_refresh_access_token: true
       expect {
         client.address_check({})
       }.to raise_error AtalogicsApi::Errors::AuthenticationFailed
@@ -40,7 +41,7 @@ describe AtalogicsApi::Client do
 
   describe 'on_access_token_change', :vcr do
     it "should call the given block, when a token has changed" do
-      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN"
+      client = AtalogicsApi::Client.new access_token: "EXPIRED_TOKEN", token_type: "bearer"
       block_called = false
       client.on_access_token_change do |access_token, token_type, expires_in|
         expect(access_token.length).to be > 20

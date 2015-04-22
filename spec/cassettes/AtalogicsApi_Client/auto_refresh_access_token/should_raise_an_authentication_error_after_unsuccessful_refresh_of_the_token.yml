@@ -12,7 +12,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - EXPIRED_TOKEN
+      - bearer EXPIRED_TOKEN
   response:
     status:
       code: 401
@@ -27,20 +27,20 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - ca8d780e-7cc7-4a07-ae98-fc4bccf56dad
+      - 6e0e66e2-8c6b-4989-bff1-dc3df87095be
       X-Runtime:
-      - '0.011312'
+      - '0.037247'
       Connection:
       - close
       Server:
       - thin
       Date:
-      - Mon, 20 Apr 2015 12:19:26 GMT
+      - Wed, 22 Apr 2015 20:54:11 GMT
     body:
       encoding: UTF-8
       string: '{"state":"error","message":"Access token invalid"}'
     http_version: 
-  recorded_at: Mon, 20 Apr 2015 12:19:26 GMT
+  recorded_at: Wed, 22 Apr 2015 20:54:11 GMT
 - request:
     method: post
     uri: http://localhost:3000/oauth/token
@@ -74,15 +74,15 @@ http_interactions:
         authentication failed due to unknown client, no client authentication included,
         or unsupported authentication method."
       X-Request-Id:
-      - a9627a65-3571-4d60-9424-8e8e9d900542
+      - 5d2d8a4c-059b-4e83-ae51-cd7234d29507
       X-Runtime:
-      - '0.011003'
+      - '0.034438'
       Connection:
       - close
       Server:
       - thin
       Date:
-      - Mon, 20 Apr 2015 12:19:26 GMT
+      - Wed, 22 Apr 2015 20:54:11 GMT
       Transfer-Encoding:
       - chunked
     body:
@@ -91,5 +91,5 @@ http_interactions:
         failed due to unknown client, no client authentication included, or unsupported
         authentication method."}'
     http_version: 
-  recorded_at: Mon, 20 Apr 2015 12:19:26 GMT
+  recorded_at: Wed, 22 Apr 2015 20:54:11 GMT
 recorded_with: VCR 2.9.3

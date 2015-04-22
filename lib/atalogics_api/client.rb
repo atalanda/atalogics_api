@@ -15,7 +15,7 @@ module AtalogicsApi
     # @option options [Boolean] :auto_refresh_access_token When set to true, it will automatically refresh the access_token, onece it has expired or is revoked
     # @return [Client]
     def initialize options={}
-      @auth = Auth.new options[:access_token]
+      @auth = Auth.new options[:access_token], options[:token_type]
       @auto_refresh_access_token = options[:auto_refresh_access_token] || false
       add_json_header
       add_auth_header

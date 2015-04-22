@@ -11,6 +11,7 @@ require 'atalogics_api/client'
 # @author Hubert Hoelzl
 module AtalogicsApi
   class Errors
+    class AccessTokenAndTokenTypeMustBeSet < StandardError; end
     class AuthenticationFailed < StandardError; end
     class ApiError < StandardError; end
   end
