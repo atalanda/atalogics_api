@@ -19,7 +19,7 @@ puts "new access_token: #{access_token}"
 puts "-----------------------------------"
 
 # address_check, response is an instance of HTTParty::Response
-response = client.address_check street: "Ignaz Harrer Str. 12", postal_code: 5020, city: "Salzburg"
+response = client.address_check street: "Ignaz Harrer Str.", number: "12", postal_code: 5020, city: "Salzburg"
 puts "address_check response:"
 puts "Code: #{response.code}, parsed_response: #{response.parsed_response}"
 
@@ -28,10 +28,10 @@ puts "-----------------------------------"
 # information about the catch and drop address
 catch_drop_information = {
   catch_address: {
-    street: "Ignaz Harrer Str. 12", postal_code: 5020, city: "Salzburg"
+    street: "Ignaz Harrer Str.", number: "12", postal_code: 5020, city: "Salzburg"
   },
   drop_address: {
-    street: "Nonntaler Haupstr. 114", postal_code: 5020, city: "Salzburg"
+    street: "Nonntaler Haupstr.", number: "114", postal_code: 5020, city: "Salzburg"
   }
 }
 # get offers
@@ -46,14 +46,22 @@ puts "-----------------------------------"
 catch_drop_information = {
   offer_id: offer_id,
   catch_address: {
-    name: "Jane Doe",
+    firstname: "Jane",
+    lastname: "Doe",
     phone: "1234567890",
-    street: "Ignaz Harrer Str. 12", postal_code: 5020, city: "Salzburg"
+    street: "Ignaz Harrer Str.",
+    number: "12",
+    postal_code: 5020,
+    city: "Salzburg"
   },
   drop_address: {
-    name: "John Doe",
+    firstname: "John",
+    lastname: "Doe",
     phone: "1234567890",
-    street: "Nonntaler Haupstr. 114", postal_code: 5020, city: "Salzburg"
+    street: "Nonntaler Haupstr.",
+    number: "114",
+    postal_code: 5020,
+    city: "Salzburg"
   }
 }
 shipment = client.purchase_offer catch_drop_information
