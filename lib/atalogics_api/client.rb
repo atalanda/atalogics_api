@@ -54,7 +54,7 @@ module AtalogicsApi
     # @option address_parts [String] :city Name of the city
     # @return [HTTParty::Response]
     def address_check address_parts
-      perform_api_action("/addresses/single/check", body: address_parts.to_json)
+      perform_api_post("/addresses/single/check", body: address_parts.to_json)
     end
 
     # Wrapper for address check, which returns just a boolean value
@@ -73,31 +73,45 @@ module AtalogicsApi
     # @param hash [Hash] Hash with catch and drop information (see https://swagger.atalanda.com/#!/offers/POST_offers_format for all available options)
     # @return [HTTParty::Response]
     def offers hash
-      perform_api_action("/offers", body: hash.to_json)
+      perform_api_post("/offers", body: hash.to_json)
     end
 
     # Purchases a shipment, based on an offer_id
     # @param hash [Hash] Hash with offer_id, catch and drop information (see https://swagger.atalanda.com/#!/shipments/POST_shipments_format for all available options)
     # @return [HTTParty::Response]
     def purchase_offer hash
-      perform_api_action("/shipments", body: hash.to_json)
+      perform_api_post("/shipments", body: hash.to_json)
     end
 
-    def perform_api_action *args
-      response = self.class.post(*args)
-      begin
-        raise_if_error response
-      rescue Errors::AuthenticationFailed => e
-        if @auto_refresh_access_token
-          refresh_access_token
-          response = self.class.post(*args)
-        end
-        raise_if_error response
-      end
-      response
+    # Lists available shipping
+    def next_delivery_time hash
+      perform_api_post("/next_delivery_time", body: hash.to_json)
     end
 
     private
+    def perform_api_post *args
+      perform_api_request(:post, *args)
+    end
+
+    def perform_api_request method, *args
+      response = self.class.send(method, *args)
+      catch(:access_token_refreshed) do
+        check_response(response)
+        return response
+      end
+      perform_api_request(method, *args) # perform again with refreshed access_token
+    end
+
+    def check_response response, &block
+      raise_if_error response
+    rescue Errors::AuthenticationFailed => e
+      if @auto_refresh_access_token
+        refresh_access_token
+        throw(:access_token_refreshed)
+      end
+      raise_if_error response
+    end
+
     def set_base_uri
       self.class.base_uri(AtalogicsApi.api_url)
     end

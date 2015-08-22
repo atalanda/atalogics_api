@@ -142,4 +142,12 @@ describe AtalogicsApi::Client do
       expect(shipment["tracking_id"]).not_to be_nil
     end
   end
+
+  describe '#next_delivery_time', :vcr do
+    it 'returns the next delivery_times for an address' do
+      client = AtalogicsApi::Client.new
+      response = client.next_delivery_time address: "5020 Salzburg, Österreich"
+      expect(response.parsed_response).to eq({"catch_time_window"=>{"from"=>"2015-08-24T08:00:00+02:00", "to"=>"2015-08-24T22:30:00+02:00"}, "drop_time_window"=>{"from"=>"2015-08-24T22:31:00+02:00", "to"=>"2015-08-24T23:59:00+02:00"}})
+    end
+  end
 end
