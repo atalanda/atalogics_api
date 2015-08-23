@@ -69,31 +69,31 @@ module AtalogicsApi
       response["success"]
     end
 
-    # Returns all offers that are available, based on the passed hash
-    # @param hash [Hash] Hash with catch and drop information (see https://swagger.atalanda.com/#!/offers/POST_offers_format for all available options)
+    # Returns all offers that are available, based on the passed body
+    # @param body [Hash] Hash with catch and drop information (see https://swagger.atalanda.com/#!/offers/POST_offers_format for all available options)
     # @return [HTTParty::Response]
-    def offers hash
-      perform_api_post("/offers", body: hash.to_json)
+    def offers body
+      perform_api_post("/offers", body: body.to_json)
     end
 
     # Purchases a shipment, based on an offer_id
-    # @param hash [Hash] Hash with offer_id, catch and drop information (see https://swagger.atalanda.com/#!/shipments/POST_shipments_format for all available options)
+    # @param body [Hash] Hash with offer_id, catch and drop information (see https://swagger.atalanda.com/#!/shipments/POST_shipments_format for all available options)
     # @return [HTTParty::Response]
-    def purchase_offer hash
-      perform_api_post("/shipments", body: hash.to_json)
+    def purchase_offer body
+      perform_api_post("/shipments", body: body.to_json)
     end
 
     # Lists available shipping
-    def next_delivery_time hash
-      perform_api_post("/next_delivery_time", body: hash.to_json)
+    def next_delivery_time body
+      perform_api_post("/next_delivery_time", body: body.to_json)
     end
 
     private
-    def perform_api_post *args
-      perform_api_request(:post, *args)
+    def perform_api_post *args, &block
+      perform_api_request(:post, *args, &block)
     end
 
-    def perform_api_request method, *args
+    def perform_api_request method, *args, &block
       response = self.class.send(method, *args)
       catch(:access_token_refreshed) do
         check_response(response)

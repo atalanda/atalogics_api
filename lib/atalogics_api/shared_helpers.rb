@@ -9,7 +9,6 @@ module AtalogicsApi
       code = response.code
       raise Errors::AuthenticationFailed.new(response.body) if code==401 || code==403
       raise Errors::ApiError.new(response.body) if code==500
-      response
     end
   end
 end
