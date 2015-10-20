@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hubert Hoelzl"]
   spec.email         = ["hubert.hoelzl@atalanda.com"]
 
-  spec.summary       = %q{TODO: Ruby wrapper for the atalogics logistics API.}
-  spec.description   = %q{TODO: Wrapper for atalogics API, book shipments, check addresses...}
+  spec.summary       = %q{Ruby wrapper for the atalogics logistics API.}
+  spec.description   = %q{Wrapper for atalogics API, book shipments, check addresses...}
   spec.homepage      = "https://github.com/atalanda/atalogics_api"
   spec.license       = "MIT"
 
