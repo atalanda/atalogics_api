@@ -52,7 +52,7 @@ describe AtalogicsApi::Auth do
       expect(auth.response.code).to eq(200)
       expect(auth.access_token.length).to be > 15
       expect(auth.token_type).to eq("bearer")
-      expect(auth.expires_in).to eq(7200)
+      expect(auth.expires_in).to eq(172800)
     end
 
     it "should raise an error, when the server returns 401", :vcr do

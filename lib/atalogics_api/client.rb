@@ -86,7 +86,12 @@ module AtalogicsApi
     # @return [HTTParty::Response]
     def next_delivery_time body
       url = "/next_delivery_time"
-      perform_api_post(url, body: body.to_json)
+      if body[:position]
+        cache_key = "#{url}_#{body[:position][:lat]}_#{body[:position][:lng]}"
+      else
+        cache_key = "#{url}_#{body[:address]}"
+      end
+      perform_api_post(url, body: body.to_json, cache_key: cache_key)
     end
 
     ################################################################
@@ -144,8 +149,7 @@ module AtalogicsApi
 
     def get_cached_result key
       return unless AtalogicsApi.cache_store
-      cached_response = AtalogicsApi.cache_store.get(key)
-      return unless cached_response
+      return unless cached_response = AtalogicsApi.cache_store.get(key)
       # 0 => code, 1 => body as json
       response = JSON.parse(cached_response)
       AtalogicsApi::Response.new response[0], response[1]
@@ -154,6 +158,7 @@ module AtalogicsApi
     def store_cached_result key, code, hash
       return unless AtalogicsApi.cache_store
       AtalogicsApi.cache_store.set key, [code, hash].to_json
+      AtalogicsApi.cache_store.expire key, 24*60*60 # 24 hours
     end
 
     def set_base_uri

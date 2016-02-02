@@ -33,14 +33,14 @@ describe AtalogicsApi do
     end
 
     context 'production' do
-      it 'should return an production api url' do
+      it 'returns an production api url' do
         expect(AtalogicsApi.base_url).to eq(AtalogicsApi::PRODUCTION_BASE_URL)
         expect(AtalogicsApi.api_url).to eq("#{AtalogicsApi::PRODUCTION_BASE_URL}#{AtalogicsApi::API_URL}")
       end
     end
 
     context 'sandbox' do
-      it 'should return an production api url' do
+      it 'returns an production api url' do
         AtalogicsApi.configure do |config|
           config.sandbox_mode = true
         end

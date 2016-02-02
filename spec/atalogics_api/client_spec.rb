@@ -63,31 +63,31 @@ describe AtalogicsApi::Client, 'endpoints' do
   let(:client) { AtalogicsApi::Client.new }
 
   describe 'address_check', :vcr do
-    it "should return success" do
+    it "returns success" do
       response = client.address_check street: "Maxglaner Haupstr.", number: "17", postal_code: 5020, city: "Salzburg"
       expect(response.body).to eq({"success" => true})
     end
 
-    it "should return an error" do
+    it "returns an error" do
       response = client.address_check street: "Fakestreet", number: "12", postal_code: 31415, city: "Faketown"
       expect(response.body).to eq({"success" => false, "error"=>["Adresse konnte nicht gefunden werden"]})
     end
   end
 
   describe "in_delivery_range?", :vcr do
-    it "should return true" do
+    it "returns true" do
       response = client.in_delivery_range? street: "Maxglaner Haupstr.", number: "17", postal_code: 5020, city: "Salzburg"
       expect(response).to be(true)
     end
 
-    it "should return false" do
+    it "returns false" do
       response = client.in_delivery_range? street: "Fakestreet", number: "12", postal_code: 31415, city: "Faketown"
       expect(response).to be(false)
     end
   end
 
   describe 'offers', :vcr do
-    it "should return offers" do
+    it "returns offers" do
       hash = {
         catch_address: {
           street: "Maxglaner Hauptstraße",
@@ -152,12 +152,24 @@ describe AtalogicsApi::Client, 'endpoints' do
   end
 
   describe '#next_delivery_time', :vcr do
-    it 'returns the next delivery_times for an address' do
-      response = client.next_delivery_time address: "5020 Salzburg, Österreich"
-      expect(response.body).to eq({
-        "catch_time_window" => {"from"=>"2016-02-02T08:00:00+01:00", "to"=>"2016-02-02T22:30:00+01:00"},
-        "drop_time_window" => {"from"=>"2016-02-02T22:31:00+01:00", "to"=>"2016-02-02T23:59:00+01:00"}
-      })
+    shared_examples 'returns_next_delivery_times' do
+      it 'returns next delivery times' do
+        response = client.next_delivery_time body
+        expect(response.body).to eq({
+          "catch_time_window" => {"from"=>"2016-02-02T08:00:00+01:00", "to"=>"2016-02-02T22:30:00+01:00"},
+          "drop_time_window" => {"from"=>"2016-02-02T22:31:00+01:00", "to"=>"2016-02-02T23:59:00+01:00"}
+        })
+      end
+    end
+
+    context 'address' do
+      let(:body) { { address: "5020 Salzburg, Österreich" } }
+      it_behaves_like 'returns_next_delivery_times'
+    end
+
+    context 'position' do
+      let(:body) { { position: {lat: 47.8027886, lng: 12.9862187} } }
+      it_behaves_like 'returns_next_delivery_times'
     end
   end
 end
@@ -173,15 +185,45 @@ describe AtalogicsApi::Client, 'cached requests' do
   let(:client) { AtalogicsApi::Client.new }
   let(:redis) { Redis.new }
 
-  it 'caches a result for address_check' do
-    parts = {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"}
-    # first store it in the cache
-    response = client.address_check parts
+  shared_examples 'cached_response' do
+    it 'caches a response' do
+      # first store it in the cache
+      response = client.send(endpoint, body)
 
-    # check if http is not hit a second time
-    expect(client.class).not_to receive(:post)
-    response = client.address_check parts
-    expect(response.code).to eq(200)
-    expect(response.body).to eq({"success" => true})
+      # check if http is NOT hit a second time
+      expect(client.class).not_to receive(:post)
+      cached_response = client.send(endpoint, body)
+      expect(cached_response.code).not_to be_nil
+      expect(cached_response.body).not_to be_nil
+      expect(cached_response.code).to eq(response.code)
+      expect(cached_response.body).to eq(response.body)
+
+      expect(AtalogicsApi.cache_store.keys).to eq([cache_key])
+      expect(AtalogicsApi.cache_store.ttl(cache_key)).to eq(24*60*60)
+    end
+  end
+
+  describe 'address_check' do
+    let(:endpoint) { :address_check }
+    let(:body) { {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"} }
+    let(:cache_key) { "/addresses/single/check_Radetzkystrasse_7_5020_Salzburg" }
+
+    it_behaves_like 'cached_response'
+  end
+
+  describe 'next_delivery_time: address' do
+    let(:endpoint) { :next_delivery_time }
+    let(:body) { {address: "Salzburg"} }
+    let(:cache_key) { "/next_delivery_time_Salzburg" }
+
+    it_behaves_like 'cached_response'
+  end
+
+  describe 'next_delivery_time: position' do
+    let(:endpoint) { :next_delivery_time }
+    let(:body) { { position: {lat: 47.8027886, lng: 12.9862187} } }
+    let(:cache_key) { "/next_delivery_time_47.8027886_12.9862187" }
+
+    it_behaves_like 'cached_response'
   end
 end
