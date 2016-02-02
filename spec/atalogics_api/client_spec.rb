@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AtalogicsApi::Client do
+describe AtalogicsApi::Client, 'configure auth' do
   before :each do
     real_configuration
   end
@@ -53,31 +53,35 @@ describe AtalogicsApi::Client do
       expect(block_called).to be(true)
     end
   end
+end
+
+describe AtalogicsApi::Client, 'endpoints' do
+  before :each do
+    real_configuration
+  end
+
+  let(:client) { AtalogicsApi::Client.new }
 
   describe 'address_check', :vcr do
     it "should return success" do
-      client = AtalogicsApi::Client.new
-      response = client.address_check street: "Maxglaner Haupstr. 17", postal_code: 5020, city: "Salzburg"
-      expect(response.parsed_response).to eq({"success" => true})
+      response = client.address_check street: "Maxglaner Haupstr.", number: "17", postal_code: 5020, city: "Salzburg"
+      expect(response.body).to eq({"success" => true})
     end
 
     it "should return an error" do
-      client = AtalogicsApi::Client.new
-      response = client.address_check street: "Fakestreet 12", postal_code: 31415, city: "Faketown"
-      expect(response.parsed_response).to eq({"error"=>["Adresse konnte nicht gefunden werden"]})
+      response = client.address_check street: "Fakestreet", number: "12", postal_code: 31415, city: "Faketown"
+      expect(response.body).to eq({"success" => false, "error"=>["Adresse konnte nicht gefunden werden"]})
     end
   end
 
   describe "in_delivery_range?", :vcr do
     it "should return true" do
-      client = AtalogicsApi::Client.new
-      response = client.in_delivery_range? street: "Maxglaner Haupstr. 17", postal_code: 5020, city: "Salzburg"
+      response = client.in_delivery_range? street: "Maxglaner Haupstr.", number: "17", postal_code: 5020, city: "Salzburg"
       expect(response).to be(true)
     end
 
     it "should return false" do
-      client = AtalogicsApi::Client.new
-      response = client.in_delivery_range? street: "Fakestreet 12", postal_code: 31415, city: "Faketown"
+      response = client.in_delivery_range? street: "Fakestreet", number: "12", postal_code: 31415, city: "Faketown"
       expect(response).to be(false)
     end
   end
@@ -86,22 +90,23 @@ describe AtalogicsApi::Client do
     it "should return offers" do
       hash = {
         catch_address: {
-          street: "Maxglaner Hauptstraße 12",
+          street: "Maxglaner Hauptstraße",
+          number: "12",
           postal_code: 5020,
           city: "Salzburg"
         },
         drop_address: {
-          street: "Ignaz Harrer Straße 34",
+          street: "Ignaz Harrer Straße",
+          number: "34",
           postal_code: 5020,
           city: "Salzburg"
         }
       }
-      client = AtalogicsApi::Client.new
       response = client.offers hash
-      arr = response.parsed_response
+      arr = response.body
       expect(response.code).to eq(200)
       expect(arr.first['offer_id'].length).to be > 200 # just check if offer id is long enough, so that we get a real offer_id
-      expect(arr.length).to eq(3)
+      expect(arr.length).to be > 3
     end
   end
 
@@ -110,34 +115,37 @@ describe AtalogicsApi::Client do
       # first get an offer
       hash = {
         catch_address: {
-          street: "Maxglaner Hauptstraße 12",
+          street: "Maxglaner Hauptstraße",
+          number: "12",
           postal_code: 5020,
           city: "Salzburg"
         },
         drop_address: {
-          street: "Ignaz Harrer Straße 34",
+          street: "Ignaz Harrer Straße",
+          number: "34",
           postal_code: 5020,
           city: "Salzburg"
         }
       }
-      client = AtalogicsApi::Client.new
       response = client.offers hash
-      offer_id = response.parsed_response.first["offer_id"]
+      offer_id = response.body.first["offer_id"]
 
       # second: add information
       hash.merge!({
         offer_id: offer_id
       })
       hash[:catch_address].merge!({
-        name: "Max Mustermann",
+        firstname: "Max",
+        lastname: "Mustermann",
         phone: "123456789"
       })
       hash[:drop_address].merge!({
-        name: "Maria Musterfrau",
+        firstname: "Maria",
+        lastname: "Musterfrau",
         phone: "123456789"
       })
       response = client.purchase_offer hash
-      shipment = response.parsed_response
+      shipment = response.body
       expect(response.code).to eq(201)
       expect(shipment["tracking_id"]).not_to be_nil
     end
@@ -145,9 +153,35 @@ describe AtalogicsApi::Client do
 
   describe '#next_delivery_time', :vcr do
     it 'returns the next delivery_times for an address' do
-      client = AtalogicsApi::Client.new
       response = client.next_delivery_time address: "5020 Salzburg, Österreich"
-      expect(response.parsed_response).to eq({"catch_time_window"=>{"from"=>"2015-08-24T08:00:00+02:00", "to"=>"2015-08-24T22:30:00+02:00"}, "drop_time_window"=>{"from"=>"2015-08-24T22:31:00+02:00", "to"=>"2015-08-24T23:59:00+02:00"}})
+      expect(response.body).to eq({
+        "catch_time_window" => {"from"=>"2016-02-02T08:00:00+01:00", "to"=>"2016-02-02T22:30:00+01:00"},
+        "drop_time_window" => {"from"=>"2016-02-02T22:31:00+01:00", "to"=>"2016-02-02T23:59:00+01:00"}
+      })
     end
+  end
+end
+
+describe AtalogicsApi::Client, 'cached requests' do
+  before :each do
+    real_configuration
+    AtalogicsApi.configure do |config|
+      config.cache_store = Redis.new
+    end
+  end
+
+  let(:client) { AtalogicsApi::Client.new }
+  let(:redis) { Redis.new }
+
+  it 'caches a result for address_check' do
+    parts = {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"}
+    # first store it in the cache
+    response = client.address_check parts
+
+    # check if http is not hit a second time
+    expect(client.class).not_to receive(:post)
+    response = client.address_check parts
+    expect(response.code).to eq(200)
+    expect(response.body).to eq({"success" => true})
   end
 end

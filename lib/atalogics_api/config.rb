@@ -30,6 +30,11 @@ module AtalogicsApi
       "#{base_url}#{API_URL}"
     end
 
+    def cache_store
+      valid_config?
+      config.cache_store
+    end
+
     def base_url
       valid_config?
       config.sandbox_mode ? sandbox_base_url : production_base_url
@@ -61,7 +66,7 @@ module AtalogicsApi
   end
 
   class Config
-    attr_accessor :client_id, :client_secret, :sandbox_mode, :production_base_url, :sandbox_base_url
+    attr_accessor :client_id, :client_secret, :sandbox_mode, :production_base_url, :sandbox_base_url, :cache_store
     def initialize
       @sandbox_mode = false
     end

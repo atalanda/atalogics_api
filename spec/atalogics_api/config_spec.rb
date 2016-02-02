@@ -48,6 +48,15 @@ describe AtalogicsApi do
         expect(AtalogicsApi.api_url).to eq("#{AtalogicsApi::SANDBOX_BASE_URL}#{AtalogicsApi::API_URL}")
       end
     end
+
+    context 'with cache_store' do
+      it 'sets a cache store' do
+        AtalogicsApi.configure do |config|
+          config.cache_store = {}
+        end
+        expect(AtalogicsApi.cache_store).to eq({})
+      end
+    end
   end
 
   describe "errors" do

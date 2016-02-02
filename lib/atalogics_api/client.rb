@@ -11,7 +11,8 @@ module AtalogicsApi
 
     # Initializes a client
     # @param options [Hash] options Hash
-    # @option options [String] :access_token Optional access_token to re-used
+    # @option options [String] :access_token Optional access_token to re-use
+    # @option options [String] :token_type Optional token_type to re-use
     # @option options [Boolean] :auto_refresh_access_token When set to true, it will automatically refresh the access_token, onece it has expired or is revoked
     # @return [Client]
     def initialize options={}
@@ -47,27 +48,50 @@ module AtalogicsApi
       auth.access_token
     end
 
+    ################################################################
+    # Cacheable requests (if cache is configured)
+    ################################################################
+
     # Performs an address check
-    # @param address_parts [Hash] Hash with address parts
-    # @option address_parts [String] :street A street
-    # @option address_parts [String] :postal_code A postal or zip code
-    # @option address_parts [String] :city Name of the city
+    # CACHEABLE
+    # @param parts [Hash] Hash with address parts
+    # @option parts [String] :street A street
+    # @option parts [String] :number A street number
+    # @option parts [String] :postal_code A postal or zip code
+    # @option parts [String] :city Name of the city
     # @return [HTTParty::Response]
-    def address_check address_parts
-      perform_api_post("/addresses/single/check", body: address_parts.to_json)
+    def address_check parts
+      url = "/addresses/single/check"
+      cache_key = "#{url}_#{parts[:street]}_#{parts[:number]}_#{parts[:postal_code]}_#{parts[:city]}"
+      perform_api_post(url, body: parts.to_json, cache_key: cache_key)
     end
 
     # Wrapper for address check, which returns just a boolean value
-    # @param address_parts [Hash] Hash with address parts
-    # @option address_parts [String] :street A street
-    # @option address_parts [String] :postal_code A postal or zip code
-    # @option address_parts [String] :city Name of the city
+    # CACHEABLE through address_check endpoint
+    # @param parts [Hash] Hash with address parts
+    # @option parts [String] :street A street
+    # @option parts [String] :number A street number
+    # @option parts [String] :postal_code A postal or zip code
+    # @option parts [String] :city Name of the city
     # @return [Boolean]
-    def in_delivery_range? address_parts
-      response = address_check(address_parts)
+    def in_delivery_range? parts
+      response = address_check(parts)
       return false unless response
-      response["success"]
+      response.body["success"]
     end
+
+    # Lists available shipping
+    # CACHEABLE
+    # @param body [Hash] Hash containing {address: "..."} or {lat: 1.1, lng: 2.2}
+    # @return [HTTParty::Response]
+    def next_delivery_time body
+      url = "/next_delivery_time"
+      perform_api_post(url, body: body.to_json)
+    end
+
+    ################################################################
+    # NON-Cacheable requests
+    ################################################################
 
     # Returns all offers that are available, based on the passed body
     # @param body [Hash] Hash with catch and drop information (see https://swagger.atalanda.com/#!/offers/POST_offers_format for all available options)
@@ -83,22 +107,28 @@ module AtalogicsApi
       perform_api_post("/shipments", body: body.to_json)
     end
 
-    # Lists available shipping
-    def next_delivery_time body
-      perform_api_post("/next_delivery_time", body: body.to_json)
-    end
-
     private
     def perform_api_post *args, &block
-      perform_api_request(:post, *args, &block)
+      cache_key = args[1].delete(:cache_key)
+      if cache_key
+        response = get_cached_result(cache_key)
+        return response if response
+      end
+
+      response = perform_api_request(:post, *args, &block)
+      store_cached_result(cache_key, response.code, response.body)
+      response
     end
 
     def perform_api_request method, *args, &block
       response = self.class.send(method, *args)
+      response = AtalogicsApi::Response.new(response.code, response.parsed_response)
+
       catch(:access_token_refreshed) do
         check_response(response)
         return response
       end
+
       perform_api_request(method, *args) # perform again with refreshed access_token
     end
 
@@ -110,6 +140,20 @@ module AtalogicsApi
         throw(:access_token_refreshed)
       end
       raise_if_error response
+    end
+
+    def get_cached_result key
+      return unless AtalogicsApi.cache_store
+      cached_response = AtalogicsApi.cache_store.get(key)
+      return unless cached_response
+      # 0 => code, 1 => body as json
+      response = JSON.parse(cached_response)
+      AtalogicsApi::Response.new response[0], response[1]
+    end
+
+    def store_cached_result key, code, hash
+      return unless AtalogicsApi.cache_store
+      AtalogicsApi.cache_store.set key, [code, hash].to_json
     end
 
     def set_base_uri
