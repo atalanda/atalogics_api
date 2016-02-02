@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'timecop'
   spec.add_development_dependency 'redis'
   spec.add_dependency "httparty", "~> 0.8.3"
 end

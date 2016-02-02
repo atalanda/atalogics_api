@@ -91,7 +91,11 @@ module AtalogicsApi
       else
         cache_key = "#{url}_#{body[:address]}"
       end
-      perform_api_post(url, body: body.to_json, cache_key: cache_key)
+
+      perform_api_post url, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
+        # a cached result expires when the current Time is after catch time to
+        cached_result && Time.now > Time.parse(cached_result.body["catch_time_window"]["to"])
+      }
     end
 
     ################################################################
@@ -117,7 +121,9 @@ module AtalogicsApi
       cache_key = args[1].delete(:cache_key)
       if cache_key
         response = get_cached_result(cache_key)
-        return response if response
+        expired_block = args[1].delete(:expired?)
+        expired = expired_block.call(response) if expired_block
+        return response if response && !expired
       end
 
       response = perform_api_request(:post, *args, &block)

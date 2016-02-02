@@ -203,7 +203,7 @@ describe AtalogicsApi::Client, 'cached requests' do
     end
   end
 
-  describe 'address_check' do
+  describe 'address_check', :vcr do
     let(:endpoint) { :address_check }
     let(:body) { {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"} }
     let(:cache_key) { "/addresses/single/check_Radetzkystrasse_7_5020_Salzburg" }
@@ -211,7 +211,7 @@ describe AtalogicsApi::Client, 'cached requests' do
     it_behaves_like 'cached_response'
   end
 
-  describe 'next_delivery_time: address' do
+  describe 'next_delivery_time: address', :vcr do
     let(:endpoint) { :next_delivery_time }
     let(:body) { {address: "Salzburg"} }
     let(:cache_key) { "/next_delivery_time_Salzburg" }
@@ -219,11 +219,25 @@ describe AtalogicsApi::Client, 'cached requests' do
     it_behaves_like 'cached_response'
   end
 
-  describe 'next_delivery_time: position' do
+  describe 'next_delivery_time: position', :vcr do
     let(:endpoint) { :next_delivery_time }
     let(:body) { { position: {lat: 47.8027886, lng: 12.9862187} } }
     let(:cache_key) { "/next_delivery_time_47.8027886_12.9862187" }
 
     it_behaves_like 'cached_response'
+
+    it 'expires a key, when cached catch_time_window is older than Time.now' do
+      # current time is one second after catch time to
+      Timecop.freeze("2016-02-02T17:00:01")
+
+      cached_body = {"catch_time_window"=>{"to"=>"2016-02-02T17:00:00+01:00"}}
+      AtalogicsApi.cache_store.set(cache_key, [200, cached_body].to_json)
+
+      expect(client.class).to receive(:post).and_return(double("httparty_response", code: 200, parsed_response: {new: "response"}))
+
+      client.next_delivery_time(body)
+
+      expect(AtalogicsApi.cache_store.get(cache_key)).to eq('[200,{"new":"response"}]')
+    end
   end
 end

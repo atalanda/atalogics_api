@@ -3,6 +3,7 @@ require 'pry-byebug'
 require 'pry-alias'
 require 'vcr'
 require 'atalogics_api'
+require 'timecop'
 require 'redis'
 
 RSpec.configure do |config|
@@ -19,7 +20,7 @@ VCR.configure do |c|
   c.default_cassette_options = { record: :once, match_requests_on: [:method, :uri, :body]}
   c.hook_into :webmock
   c.configure_rspec_metadata!
-  c.ignore_localhost = true
+  c.ignore_localhost = false
   c.allow_http_connections_when_no_cassette = false
 end
 

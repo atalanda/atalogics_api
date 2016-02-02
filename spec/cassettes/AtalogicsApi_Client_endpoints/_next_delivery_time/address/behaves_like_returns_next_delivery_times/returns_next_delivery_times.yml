@@ -1,0 +1,103 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"7f667143a27d6e23931b5184fa68d491"
+      X-Request-Id:
+      - 8c425a18-bea6-49b6-9ec0-c57d469a9d7f
+      X-Runtime:
+      - '0.013832'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Tue, 02 Feb 2016 16:14:03 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"d126b7c24e8c5dfa214a3dfde27d38e9500fe771e5e29857b9992ac8de8a7088","token_type":"bearer","expires_in":172800,"created_at":1454429643}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 16:00:01 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/api/v2/next_delivery_time
+    body:
+      encoding: UTF-8
+      string: '{"address":"5020 Salzburg, Österreich"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer d126b7c24e8c5dfa214a3dfde27d38e9500fe771e5e29857b9992ac8de8a7088
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '180'
+      Etag:
+      - W/"dab60fb4ef0a9a0e616ca7de464edfc0"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - fc1183aa-c0ed-47d9-ad27-672073763ab3
+      X-Runtime:
+      - '0.055329'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Tue, 02 Feb 2016 16:14:03 GMT
+    body:
+      encoding: UTF-8
+      string: '{"catch_time_window":{"from":"2016-02-02T08:00:00+01:00","to":"2016-02-02T22:30:00+01:00"},"drop_time_window":{"from":"2016-02-02T22:31:00+01:00","to":"2016-02-02T23:59:00+01:00"}}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 16:00:01 GMT
+recorded_with: VCR 2.9.3
