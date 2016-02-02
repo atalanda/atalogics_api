@@ -240,4 +240,9 @@ describe AtalogicsApi::Client, 'cached requests' do
       expect(AtalogicsApi.cache_store.get(cache_key)).to eq('[200,{"new":"response"}]')
     end
   end
+
+  it 'skips storing a hash key for other endpoints which dont support caching (e.g. #offers)', :vcr do
+    response = client.offers({})
+    expect(AtalogicsApi.cache_store.keys('*')).to eq([])
+  end
 end

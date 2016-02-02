@@ -127,7 +127,7 @@ module AtalogicsApi
       end
 
       response = perform_api_request(:post, *args, &block)
-      store_cached_result(cache_key, response.code, response.body)
+      store_cached_result(cache_key, response.code, response.body) if cache_key
       response
     end
 

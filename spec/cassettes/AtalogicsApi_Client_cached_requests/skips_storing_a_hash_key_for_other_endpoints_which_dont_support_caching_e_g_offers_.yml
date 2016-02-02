@@ -1,0 +1,103 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"ac13f310c120473c81278abef1d1cf9c"
+      X-Request-Id:
+      - 95d93378-a2f3-4c4b-956c-d716275f5897
+      X-Runtime:
+      - '0.016863'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Tue, 02 Feb 2016 19:20:00 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"edfea9d52ee9caaa23a496d5c6c4baf5d22566723848e3e4e1682e891e7a188e","token_type":"bearer","expires_in":172800,"created_at":1454440800}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 19:20:00 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/api/v2/offers
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer edfea9d52ee9caaa23a496d5c6c4baf5d22566723848e3e4e1682e891e7a188e
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Length:
+      - '386'
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 240f6a3b-a6d6-45ef-8b54-0d10741d799f
+      X-Runtime:
+      - '0.014874'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Tue, 02 Feb 2016 19:20:00 GMT
+    body:
+      encoding: UTF-8
+      string: '{"error":{"catch_address":["is missing"],"catch_address[street]":["is
+        missing"],"catch_address[number]":["is missing"],"catch_address[postal_code]":["is
+        missing"],"catch_address[city]":["is missing"],"drop_address":["is missing"],"drop_address[street]":["is
+        missing"],"drop_address[number]":["is missing"],"drop_address[postal_code]":["is
+        missing"],"drop_address[city]":["is missing"]}}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 19:20:00 GMT
+recorded_with: VCR 2.9.3
