@@ -162,6 +162,7 @@ module AtalogicsApi
     end
 
     def store_cached_result key, code, hash
+      return if code.to_s[0]!="2" && code.to_s[0]!="3" # don't cache failed responses
       return unless AtalogicsApi.cache_store
       AtalogicsApi.cache_store.set key, [code, hash].to_json
       AtalogicsApi.cache_store.expire key, 24*60*60 # 24 hours

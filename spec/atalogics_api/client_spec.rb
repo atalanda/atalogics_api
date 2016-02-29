@@ -187,6 +187,8 @@ describe AtalogicsApi::Client, 'cached requests' do
 
   shared_examples 'cached_response' do
     it 'caches a response' do
+      Timecop.freeze("2016-02-02T12:00:01") # VCR cassetts are recorded at 2016-02-02
+
       # first store it in the cache
       response = client.send(endpoint, body)
 
@@ -239,6 +241,12 @@ describe AtalogicsApi::Client, 'cached requests' do
 
       expect(AtalogicsApi.cache_store.get(cache_key)).to eq('[200,{"new":"response"}]')
     end
+  end
+
+  it 'doesnt cache a failing response', :vcr do
+    # this returns a 404 status, timeslots not found
+    response = client.next_delivery_time(address: "Fake Town")
+    expect(AtalogicsApi.cache_store.keys.count).to eq(0)
   end
 
   it 'skips storing a hash key for other endpoints which dont support caching (e.g. #offers)', :vcr do

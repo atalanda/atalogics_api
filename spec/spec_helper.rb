@@ -41,7 +41,7 @@ def real_configuration
   # AtalogicsApi.configure do |config|
   #   config.client_id = "00aefc972aaad36e1fb232d0f6cebb39117ca8fc07e53f78647d8a1544dcfd0a"
   #   config.client_secret = "a3d677268a500e60a0b72ef9985a2460874fff9401a290da51ee383e24239e32"
-  #   config.production_base_url = "https://sandbox.atalanda.com"
+  #   config.production_base_url = "https://sandbox.atalogics.com"
   # end
 end
 
