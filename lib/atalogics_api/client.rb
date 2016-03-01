@@ -84,8 +84,8 @@ module AtalogicsApi
     # CACHEABLE
     # @param body [Hash] Hash containing {address: "..."} or {lat: 1.1, lng: 2.2}
     # @return [HTTParty::Response]
-    def next_delivery_time body
-      url = "/next_delivery_time"
+    def next_delivery_times body
+      url = "/next_delivery_times"
       if body[:position]
         cache_key = "#{url}_#{body[:position][:lat]}_#{body[:position][:lng]}"
       else
@@ -93,8 +93,8 @@ module AtalogicsApi
       end
 
       perform_api_post url, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
-        # a cached result expires when the current Time is after catch time to
-        cached_result && Time.now > Time.parse(cached_result.body["catch_time_window"]["to"])
+        # a cached result expires when the current Time is after the first timeslots' catch time to
+        cached_result && Time.now > Time.parse(cached_result.body.first["catch_time_window"]["to"])
       }
     end
 
