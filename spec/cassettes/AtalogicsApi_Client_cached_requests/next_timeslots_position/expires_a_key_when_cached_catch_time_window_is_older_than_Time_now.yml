@@ -33,11 +33,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"41d301d4a69fa7e3934b21b83c2e6988"
+      - W/"b7868ee525845d0b53191df927290a31"
       X-Request-Id:
-      - e1e2a00e-ac82-443d-9c99-222bbe6d73c0
+      - aa9a45be-1206-4631-95d0-b39c4295d967
       X-Runtime:
-      - '0.017164'
+      - '0.018506'
       Vary:
       - Origin
       Connection:
@@ -45,12 +45,12 @@ http_interactions:
       Server:
       - thin
       Date:
-      - Tue, 01 Mar 2016 18:38:10 GMT
+      - Wed, 02 Mar 2016 09:55:08 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"99bca757fe955880e784217acaa31591ec70bb84fab08ed1c9b6dbb1da397087","token_type":"bearer","expires_in":172800,"created_at":1456857490}'
+      string: '{"access_token":"ebb0f53248d4ce90906f965bd63c3d0a17a13f401ad82c21920a3cdaaeaded70","token_type":"bearer","expires_in":172800,"created_at":1456912508}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 16:00:01 GMT
 recorded_with: VCR 2.9.3

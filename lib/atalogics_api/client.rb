@@ -84,8 +84,8 @@ module AtalogicsApi
     # CACHEABLE
     # @param body [Hash] Hash containing {address: "..."} or {lat: 1.1, lng: 2.2}
     # @return [HTTParty::Response]
-    def next_delivery_times body
-      url = "/next_delivery_times"
+    def next_timeslots body
+      url = "/next_timeslots"
       if body[:position]
         cache_key = "#{url}_#{body[:position][:lat]}_#{body[:position][:lng]}"
       else

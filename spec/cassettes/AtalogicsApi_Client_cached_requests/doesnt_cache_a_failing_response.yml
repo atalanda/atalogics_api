@@ -55,7 +55,7 @@ http_interactions:
   recorded_at: Tue, 01 Mar 2016 18:38:10 GMT
 - request:
     method: post
-    uri: http://localhost:3000/api/v2/next_delivery_times
+    uri: http://localhost:3000/api/v2/next_timeslots
     body:
       encoding: UTF-8
       string: '{"address":"Fake Town"}'

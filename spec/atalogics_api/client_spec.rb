@@ -151,31 +151,31 @@ describe AtalogicsApi::Client, 'endpoints' do
     end
   end
 
-  describe '#next_delivery_times', :vcr do
-    shared_examples 'returns_next_delivery_times' do
+  describe '#next_timeslots', :vcr do
+    shared_examples 'returns_next_timeslots' do
       it 'returns next delivery times' do
-        response = client.next_delivery_times body
+        response = client.next_timeslots body
         pair = response.body.first
-        expect(pair["catch_time_window"]["from"]).to eq("2016-03-01T08:00:00+01:00")
-        expect(pair["catch_time_window"]["to"]).to eq("2016-03-01T22:30:00+01:00")
-        expect(pair["catch_time_window"]["date"]).to eq("2016-03-01")
+        expect(pair["catch_time_window"]["from"]).to eq("2016-03-02T08:00:00+01:00")
+        expect(pair["catch_time_window"]["to"]).to eq("2016-03-02T22:30:00+01:00")
+        expect(pair["catch_time_window"]["date"]).to eq("2016-03-02")
         expect(pair["catch_time_window"]["timeslot_id"]).to eq("5489f73a3233741d000c0000")
 
-        expect(pair["drop_time_window"]["from"]).to eq("2016-03-01T22:31:00+01:00")
-        expect(pair["drop_time_window"]["to"]).to eq("2016-03-01T23:59:00+01:00")
-        expect(pair["drop_time_window"]["date"]).to eq("2016-03-01")
+        expect(pair["drop_time_window"]["from"]).to eq("2016-03-02T22:31:00+01:00")
+        expect(pair["drop_time_window"]["to"]).to eq("2016-03-02T23:59:00+01:00")
+        expect(pair["drop_time_window"]["date"]).to eq("2016-03-02")
         expect(pair["drop_time_window"]["timeslot_id"]).to eq("5489f7533233741d000e0000")
       end
     end
 
     context 'address' do
       let(:body) { { address: "5020 Salzburg, Österreich" } }
-      it_behaves_like 'returns_next_delivery_times'
+      it_behaves_like 'returns_next_timeslots'
     end
 
     context 'position' do
       let(:body) { { position: {lat: 47.8027886, lng: 12.9862187} } }
-      it_behaves_like 'returns_next_delivery_times'
+      it_behaves_like 'returns_next_timeslots'
     end
   end
 end
@@ -219,18 +219,18 @@ describe AtalogicsApi::Client, 'cached requests' do
     it_behaves_like 'cached_response'
   end
 
-  describe 'next_delivery_times: address', :vcr do
-    let(:endpoint) { :next_delivery_times }
+  describe 'next_timeslots: address', :vcr do
+    let(:endpoint) { :next_timeslots }
     let(:body) { {address: "Salzburg"} }
-    let(:cache_key) { "/next_delivery_times_Salzburg" }
+    let(:cache_key) { "/next_timeslots_Salzburg" }
 
     it_behaves_like 'cached_response'
   end
 
-  describe 'next_delivery_times: position', :vcr do
-    let(:endpoint) { :next_delivery_times }
+  describe 'next_timeslots: position', :vcr do
+    let(:endpoint) { :next_timeslots }
     let(:body) { { position: {lat: 47.8027886, lng: 12.9862187} } }
-    let(:cache_key) { "/next_delivery_times_47.8027886_12.9862187" }
+    let(:cache_key) { "/next_timeslots_47.8027886_12.9862187" }
 
     it_behaves_like 'cached_response'
 
@@ -243,7 +243,7 @@ describe AtalogicsApi::Client, 'cached requests' do
 
       expect(client.class).to receive(:post).and_return(double("httparty_response", code: 200, parsed_response: {new: "response"}))
 
-      client.next_delivery_times(body)
+      client.next_timeslots(body)
 
       expect(AtalogicsApi.cache_store.get(cache_key)).to eq('[200,{"new":"response"}]')
     end
@@ -251,7 +251,7 @@ describe AtalogicsApi::Client, 'cached requests' do
 
   it 'doesnt cache a failing response', :vcr do
     # this returns a 404 status, timeslots not found
-    response = client.next_delivery_times(address: "Fake Town")
+    response = client.next_timeslots(address: "Fake Town")
     expect(AtalogicsApi.cache_store.keys.count).to eq(0)
   end
 
