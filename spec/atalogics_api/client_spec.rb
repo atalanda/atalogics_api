@@ -74,6 +74,19 @@ describe AtalogicsApi::Client, 'endpoints' do
     end
   end
 
+  describe 'multi_address_check', :vcr do
+    it 'checks multiple addresses' do
+      addresses = {
+        addresses: [
+          {lat: 47.8065258, lng: 13.0474424},
+          {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"}
+        ]
+      }
+      response = client.multi_address_check addresses
+      expect(response.body).to eq({"success" => true, "same_city" => true})
+    end
+  end
+
   describe "in_delivery_range?", :vcr do
     it "returns true" do
       response = client.in_delivery_range? street: "Maxglaner Haupstr.", number: "17", postal_code: 5020, city: "Salzburg"
@@ -214,7 +227,28 @@ describe AtalogicsApi::Client, 'cached requests' do
   describe 'address_check', :vcr do
     let(:endpoint) { :address_check }
     let(:body) { {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"} }
-    let(:cache_key) { "/addresses/single/check_Radetzkystrasse_7_5020_Salzburg" }
+    let(:cache_key) { "/addresses/single/check_Radetzkystrasse_7_5020_Salzburg__" }
+
+    it_behaves_like 'cached_response'
+  end
+
+  describe 'address_check with lat/lng', :vcr do
+    let(:endpoint) { :address_check }
+    let(:body) { {lat: 47.8065258, lng: 13.0474424} }
+    let(:cache_key) { "/addresses/single/check_____47.8065258_13.0474424" }
+
+    it_behaves_like 'cached_response'
+  end
+
+  describe 'multi_address_check', :vcr do
+    let(:endpoint) { :multi_address_check }
+    let(:body) {{
+      addresses: [
+        {lat: 47.8065258, lng: 13.0474424},
+        {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"}
+      ]
+    }}
+    let(:cache_key) { "/addresses/multi/check_____47.8065258_13.0474424_Radetzkystrasse_7_5020_Salzburg__" }
 
     it_behaves_like 'cached_response'
   end

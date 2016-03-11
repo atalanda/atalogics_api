@@ -59,11 +59,32 @@ module AtalogicsApi
     # @option parts [String] :number A street number
     # @option parts [String] :postal_code A postal or zip code
     # @option parts [String] :city Name of the city
+    # @option parts [String] :lat Latitude
+    # @option parts [String] :lng Longitude
     # @return [HTTParty::Response]
     def address_check parts
       url = "/addresses/single/check"
-      cache_key = "#{url}_#{parts[:street]}_#{parts[:number]}_#{parts[:postal_code]}_#{parts[:city]}"
+      cache_key = "#{url}_#{parts[:street]}_#{parts[:number]}_#{parts[:postal_code]}_#{parts[:city]}_#{parts[:lat]}_#{parts[:lng]}"
       perform_api_post(url, body: parts.to_json, cache_key: cache_key)
+    end
+
+    # Performs an address check
+    # CACHEABLE
+    # @param addresses [Array] Array of hashes of address parts
+    # @option addresses [String] :street A street
+    # @option addresses [String] :number A street number
+    # @option addresses [String] :postal_code A postal or zip code
+    # @option addresses [String] :city Name of the city
+    # @option addresses [String] :lat Latitude
+    # @option addresses [String] :lng Longitude
+    # @return [HTTParty::Response]
+    def multi_address_check addresses
+      url = "/addresses/multi/check"
+      cache_key = "#{url}"
+      addresses[:addresses].each do |address|
+        cache_key += "_#{address[:street]}_#{address[:number]}_#{address[:postal_code]}_#{address[:city]}_#{address[:lat]}_#{address[:lng]}"
+      end
+      perform_api_post(url, body: addresses.to_json, cache_key: cache_key)
     end
 
     # Wrapper for address check, which returns just a boolean value
@@ -73,6 +94,8 @@ module AtalogicsApi
     # @option parts [String] :number A street number
     # @option parts [String] :postal_code A postal or zip code
     # @option parts [String] :city Name of the city
+    # @option parts [String] :lat Latitude
+    # @option parts [String] :lng Longitude
     # @return [Boolean]
     def in_delivery_range? parts
       response = address_check(parts)
