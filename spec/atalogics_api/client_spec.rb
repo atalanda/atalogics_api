@@ -83,7 +83,7 @@ describe AtalogicsApi::Client, 'endpoints' do
         ]
       }
       response = client.multi_address_check addresses
-      expect(response.body).to eq({"success" => true, "same_city" => true})
+      expect(response.body).to eq({"success" => true, "same_area" => true})
     end
   end
 

@@ -97,7 +97,7 @@ http_interactions:
       - Fri, 11 Mar 2016 15:00:18 GMT
     body:
       encoding: UTF-8
-      string: '{"success":true,"same_city":true}'
+      string: '{"success":true,"same_area":true}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 recorded_with: VCR 2.9.3
