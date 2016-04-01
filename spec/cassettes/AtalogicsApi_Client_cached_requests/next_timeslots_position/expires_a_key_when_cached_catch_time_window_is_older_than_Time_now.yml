@@ -16,10 +16,6 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - "*"
       X-Frame-Options:
       - SAMEORIGIN
       X-Xss-Protection:
@@ -33,24 +29,20 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b7868ee525845d0b53191df927290a31"
+      - W/"c4d942c13167fb4ed570529efc4382e8"
       X-Request-Id:
-      - aa9a45be-1206-4631-95d0-b39c4295d967
+      - d605590a-e1c9-47ee-b34a-f1850605bf33
       X-Runtime:
-      - '0.018506'
+      - '0.014009'
       Vary:
       - Origin
       Connection:
       - close
       Server:
       - thin
-      Date:
-      - Wed, 02 Mar 2016 09:55:08 GMT
-      Transfer-Encoding:
-      - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"ebb0f53248d4ce90906f965bd63c3d0a17a13f401ad82c21920a3cdaaeaded70","token_type":"bearer","expires_in":172800,"created_at":1456912508}'
+      string: '{"access_token":"542bd9fb23ca778e55087815972312d5e47550593131e1b8047c604bf6c970cf","token_type":"bearer","expires_in":172800,"created_at":1459500347}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 16:00:01 GMT
 recorded_with: VCR 2.9.3

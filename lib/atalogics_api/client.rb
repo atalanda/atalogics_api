@@ -116,8 +116,8 @@ module AtalogicsApi
       end
 
       perform_api_post url, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
-        # a cached result expires when the current Time is after the first timeslots' catch time to
-        cached_result && Time.now > Time.parse(cached_result.body.first["catch_time_window"]["to"])
+        # a cached result expires when the current Time is after the first timeslots' order_till
+        cached_result && Time.now > Time.parse(cached_result.body.first["order_till"])
       }
     end
 
