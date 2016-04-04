@@ -16,6 +16,10 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
       X-Frame-Options:
       - SAMEORIGIN
       X-Xss-Protection:
@@ -29,20 +33,24 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"9fbd06602b7a8d4ade17ff4b8b9a4186"
+      - W/"2d9fc42777889684e9d3adf14af0625f"
       X-Request-Id:
-      - 7e98a2a6-c731-4091-b476-55696a346e76
+      - 3ee1b4c8-bbff-4396-ae27-ca6add103754
       X-Runtime:
-      - '0.050549'
+      - '0.253235'
       Vary:
       - Origin
       Connection:
       - close
       Server:
       - thin
+      Date:
+      - Mon, 04 Apr 2016 16:22:08 GMT
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"a48a8b70689e59a1c62307c74c229255c771fd818dac68ec3d4e7c61f4980757","token_type":"bearer","expires_in":172800,"created_at":1459500346}'
+      string: '{"access_token":"780994ea5d0d977a2775de355e5fc1c94418a8aafe92f49ef990bdca7a7f24a4","token_type":"bearer","expires_in":172800,"created_at":1459786928}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 - request:
@@ -57,33 +65,39 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - bearer a48a8b70689e59a1c62307c74c229255c771fd818dac68ec3d4e7c61f4980757
+      - bearer 780994ea5d0d977a2775de355e5fc1c94418a8aafe92f49ef990bdca7a7f24a4
   response:
     status:
-      code: 201
-      message: Created
+      code: 200
+      message: OK
     headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
       Content-Type:
       - application/json
       Content-Length:
-      - '4817'
+      - '5475'
       Etag:
-      - W/"832885c5f451ee5541ad3ea0374cfdc8"
+      - W/"780dbfbe0e9f3e5f69a9285c2696c4c8"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 6b871a41-7691-45b6-9f61-3d0425bb7293
+      - 1da722e4-59f3-4d2e-ba6b-1b84c0bbfe5c
       X-Runtime:
-      - '0.551504'
+      - '0.517688'
       Vary:
       - Origin
       Connection:
-      - keep-alive
+      - close
       Server:
       - thin
+      Date:
+      - Mon, 04 Apr 2016 16:22:08 GMT
     body:
       encoding: UTF-8
-      string: '[{"order_till":"2016-04-01T07:30:00+02:00","catch_time_window":{"date":"2016-04-01","from":"2016-04-01T08:00:00+02:00","to":"2016-04-01T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-01","from":"2016-04-01T22:31:00+02:00","to":"2016-04-01T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-02T07:30:00+02:00","catch_time_window":{"date":"2016-04-02","from":"2016-04-02T08:00:00+02:00","to":"2016-04-02T18:00:00+02:00","timeslot_id":"5658c997331fda3bd7000057"},"drop_time_window":{"date":"2016-04-02","from":"2016-04-02T18:00:00+02:00","to":"2016-04-02T23:00:00+02:00","timeslot_id":"5658c9ac331fda3bd7000058"}},{"order_till":"2016-04-04T07:30:00+02:00","catch_time_window":{"date":"2016-04-04","from":"2016-04-04T08:00:00+02:00","to":"2016-04-04T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-04","from":"2016-04-04T22:31:00+02:00","to":"2016-04-04T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-05T07:30:00+02:00","catch_time_window":{"date":"2016-04-05","from":"2016-04-05T08:00:00+02:00","to":"2016-04-05T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-05","from":"2016-04-05T22:31:00+02:00","to":"2016-04-05T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-06T07:30:00+02:00","catch_time_window":{"date":"2016-04-06","from":"2016-04-06T08:00:00+02:00","to":"2016-04-06T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-06","from":"2016-04-06T22:31:00+02:00","to":"2016-04-06T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-07T07:30:00+02:00","catch_time_window":{"date":"2016-04-07","from":"2016-04-07T08:00:00+02:00","to":"2016-04-07T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-07","from":"2016-04-07T22:31:00+02:00","to":"2016-04-07T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-08T07:30:00+02:00","catch_time_window":{"date":"2016-04-08","from":"2016-04-08T08:00:00+02:00","to":"2016-04-08T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-08","from":"2016-04-08T22:31:00+02:00","to":"2016-04-08T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-09T07:30:00+02:00","catch_time_window":{"date":"2016-04-09","from":"2016-04-09T08:00:00+02:00","to":"2016-04-09T18:00:00+02:00","timeslot_id":"5658c997331fda3bd7000057"},"drop_time_window":{"date":"2016-04-09","from":"2016-04-09T18:00:00+02:00","to":"2016-04-09T23:00:00+02:00","timeslot_id":"5658c9ac331fda3bd7000058"}},{"order_till":"2016-04-11T07:30:00+02:00","catch_time_window":{"date":"2016-04-11","from":"2016-04-11T08:00:00+02:00","to":"2016-04-11T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-11","from":"2016-04-11T22:31:00+02:00","to":"2016-04-11T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-12T07:30:00+02:00","catch_time_window":{"date":"2016-04-12","from":"2016-04-12T08:00:00+02:00","to":"2016-04-12T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-12","from":"2016-04-12T22:31:00+02:00","to":"2016-04-12T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-13T07:30:00+02:00","catch_time_window":{"date":"2016-04-13","from":"2016-04-13T08:00:00+02:00","to":"2016-04-13T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-13","from":"2016-04-13T22:31:00+02:00","to":"2016-04-13T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-14T07:30:00+02:00","catch_time_window":{"date":"2016-04-14","from":"2016-04-14T08:00:00+02:00","to":"2016-04-14T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-14","from":"2016-04-14T22:31:00+02:00","to":"2016-04-14T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-15T07:30:00+02:00","catch_time_window":{"date":"2016-04-15","from":"2016-04-15T08:00:00+02:00","to":"2016-04-15T22:30:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-15","from":"2016-04-15T22:31:00+02:00","to":"2016-04-15T23:59:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"order_till":"2016-04-16T07:30:00+02:00","catch_time_window":{"date":"2016-04-16","from":"2016-04-16T08:00:00+02:00","to":"2016-04-16T18:00:00+02:00","timeslot_id":"5658c997331fda3bd7000057"},"drop_time_window":{"date":"2016-04-16","from":"2016-04-16T18:00:00+02:00","to":"2016-04-16T23:00:00+02:00","timeslot_id":"5658c9ac331fda3bd7000058"}}]'
+      string: '[{"catch_time_window":{"date":"2016-04-04","from":"2016-04-04T08:00:00+02:00","to":"2016-04-04T22:30:00+02:00","bookable_till":"2016-04-04T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-04","from":"2016-04-04T22:31:00+02:00","to":"2016-04-04T23:59:00+02:00","bookable_till":"2016-04-04T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-05","from":"2016-04-05T08:00:00+02:00","to":"2016-04-05T22:30:00+02:00","bookable_till":"2016-04-05T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-05","from":"2016-04-05T22:31:00+02:00","to":"2016-04-05T23:59:00+02:00","bookable_till":"2016-04-05T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-06","from":"2016-04-06T08:00:00+02:00","to":"2016-04-06T22:30:00+02:00","bookable_till":"2016-04-06T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-06","from":"2016-04-06T22:31:00+02:00","to":"2016-04-06T23:59:00+02:00","bookable_till":"2016-04-06T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-07","from":"2016-04-07T08:00:00+02:00","to":"2016-04-07T22:30:00+02:00","bookable_till":"2016-04-07T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-07","from":"2016-04-07T22:31:00+02:00","to":"2016-04-07T23:59:00+02:00","bookable_till":"2016-04-07T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-08","from":"2016-04-08T08:00:00+02:00","to":"2016-04-08T22:30:00+02:00","bookable_till":"2016-04-08T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-08","from":"2016-04-08T22:31:00+02:00","to":"2016-04-08T23:59:00+02:00","bookable_till":"2016-04-08T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-09","from":"2016-04-09T08:00:00+02:00","to":"2016-04-09T18:00:00+02:00","bookable_till":"2016-04-09T17:30:00+02:00","timeslot_id":"5658c997331fda3bd7000057"},"drop_time_window":{"date":"2016-04-09","from":"2016-04-09T18:00:00+02:00","to":"2016-04-09T23:00:00+02:00","bookable_till":"2016-04-09T22:30:00+02:00","timeslot_id":"5658c9ac331fda3bd7000058"}},{"catch_time_window":{"date":"2016-04-11","from":"2016-04-11T08:00:00+02:00","to":"2016-04-11T22:30:00+02:00","bookable_till":"2016-04-11T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-11","from":"2016-04-11T22:31:00+02:00","to":"2016-04-11T23:59:00+02:00","bookable_till":"2016-04-11T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-12","from":"2016-04-12T08:00:00+02:00","to":"2016-04-12T22:30:00+02:00","bookable_till":"2016-04-12T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-12","from":"2016-04-12T22:31:00+02:00","to":"2016-04-12T23:59:00+02:00","bookable_till":"2016-04-12T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-13","from":"2016-04-13T08:00:00+02:00","to":"2016-04-13T22:30:00+02:00","bookable_till":"2016-04-13T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-13","from":"2016-04-13T22:31:00+02:00","to":"2016-04-13T23:59:00+02:00","bookable_till":"2016-04-13T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-14","from":"2016-04-14T08:00:00+02:00","to":"2016-04-14T22:30:00+02:00","bookable_till":"2016-04-14T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-14","from":"2016-04-14T22:31:00+02:00","to":"2016-04-14T23:59:00+02:00","bookable_till":"2016-04-14T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-15","from":"2016-04-15T08:00:00+02:00","to":"2016-04-15T22:30:00+02:00","bookable_till":"2016-04-15T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-15","from":"2016-04-15T22:31:00+02:00","to":"2016-04-15T23:59:00+02:00","bookable_till":"2016-04-15T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-16","from":"2016-04-16T08:00:00+02:00","to":"2016-04-16T18:00:00+02:00","bookable_till":"2016-04-16T17:30:00+02:00","timeslot_id":"5658c997331fda3bd7000057"},"drop_time_window":{"date":"2016-04-16","from":"2016-04-16T18:00:00+02:00","to":"2016-04-16T23:00:00+02:00","bookable_till":"2016-04-16T22:30:00+02:00","timeslot_id":"5658c9ac331fda3bd7000058"}},{"catch_time_window":{"date":"2016-04-18","from":"2016-04-18T08:00:00+02:00","to":"2016-04-18T22:30:00+02:00","bookable_till":"2016-04-18T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-18","from":"2016-04-18T22:31:00+02:00","to":"2016-04-18T23:59:00+02:00","bookable_till":"2016-04-18T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2016-04-19","from":"2016-04-19T08:00:00+02:00","to":"2016-04-19T22:30:00+02:00","bookable_till":"2016-04-19T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2016-04-19","from":"2016-04-19T22:31:00+02:00","to":"2016-04-19T23:59:00+02:00","bookable_till":"2016-04-19T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}}]'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 recorded_with: VCR 2.9.3

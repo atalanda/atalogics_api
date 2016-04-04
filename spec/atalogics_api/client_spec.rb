@@ -210,6 +210,7 @@ describe AtalogicsApi::Client, 'cached requests' do
 
       # first store it in the cache
       response = client.send(endpoint, body)
+      expect(response.code).to eq(200)
 
       # check if http is NOT hit a second time
       expect(client.class).not_to receive(:post)
@@ -272,7 +273,7 @@ describe AtalogicsApi::Client, 'cached requests' do
       # current time is one second after catch time to
       Timecop.freeze("2016-02-02T17:00:01")
 
-      cached_body = [{"order_till" => "2016-02-02T17:00:00+01:00"}]
+      cached_body = [{"catch_time_window" => {"bookable_till" => "2016-02-02T17:00:00+01:00"}}]
       AtalogicsApi.cache_store.set(cache_key, [200, cached_body].to_json)
 
       expect(client.class).to receive(:post).and_return(double("httparty_response", code: 200, parsed_response: {new: "response"}))
