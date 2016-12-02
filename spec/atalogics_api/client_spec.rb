@@ -262,6 +262,22 @@ describe AtalogicsApi::Client, 'cached requests' do
     it_behaves_like 'cached_response'
   end
 
+  describe 'next_timeslots: from', :vcr do
+    let(:endpoint) { :next_timeslots }
+    let(:body) { {address: "Salzburg", from: "2016-12-02T12:00:00"} }
+    let(:cache_key) { "/next_timeslots_Salzburg_from_2016-12-02T12:00:00" }
+
+    it_behaves_like 'cached_response'
+  end
+
+  describe 'next_timeslots: from, to', :vcr do
+    let(:endpoint) { :next_timeslots }
+    let(:body) { {address: "Salzburg", from: '2016-12-02T12:00:00', to: "2016-12-08T12:00:00"} }
+    let(:cache_key) { "/next_timeslots_Salzburg_from_2016-12-02T12:00:00_to_2016-12-08T12:00:00" }
+
+    it_behaves_like 'cached_response'
+  end
+
   describe 'next_timeslots: position', :vcr do
     let(:endpoint) { :next_timeslots }
     let(:body) { { position: {lat: 47.8027886, lng: 12.9862187} } }

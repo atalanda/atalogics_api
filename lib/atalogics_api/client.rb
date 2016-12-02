@@ -115,6 +115,9 @@ module AtalogicsApi
         cache_key = "#{url}_#{body[:address]}"
       end
 
+      cache_key += "_from_#{body[:from]}" if body[:from]
+      cache_key += "_to_#{body[:to]}" if body[:to]
+
       perform_api_post url, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
         # a cached result expires when the current Time is after the first catch timeslots' bookable_till
         cached_result && Time.now > Time.parse(cached_result.body.first["catch_time_window"]["bookable_till"])
