@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3000/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53","client_secret":"2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"d2abb3e8c8e13bb1a9e8dd1e6ebcc6c0"
+      X-Request-Id:
+      - d3a20bcd-55c3-48ba-94e5-bdf44a2dd2f0
+      X-Runtime:
+      - '0.015457'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"a8a7c303577b38fe734212ee685bff58c18c03a96a3faf11ded2c0c0f2dc5e3a","token_type":"bearer","expires_in":172800,"created_at":1491299366}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
+    uri: http://localhost:3000/api/v2/next_timeslots
+    body:
+      encoding: UTF-8
+      string: '{"address":"5020 Salzburg, Österreich"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer a8a7c303577b38fe734212ee685bff58c18c03a96a3faf11ded2c0c0f2dc5e3a
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '5084'
+      Etag:
+      - W/"ab86203562238cdb237369e1136db93b"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 0242fcdc-0607-400f-8472-a7dd307f2cf1
+      X-Runtime:
+      - '0.217028'
+      Vary:
+      - Origin
+      Connection:
+      - keep-alive
+      Server:
+      - thin
+    body:
+      encoding: UTF-8
+      string: '[{"catch_time_window":{"date":"2017-04-04","from":"2017-04-04T08:00:00+02:00","to":"2017-04-04T22:30:00+02:00","bookable_till":"2017-04-04T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-04","from":"2017-04-04T22:31:00+02:00","to":"2017-04-04T23:59:00+02:00","bookable_till":"2017-04-04T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-05","from":"2017-04-05T08:00:00+02:00","to":"2017-04-05T22:30:00+02:00","bookable_till":"2017-04-05T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-05","from":"2017-04-05T22:31:00+02:00","to":"2017-04-05T23:59:00+02:00","bookable_till":"2017-04-05T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-06","from":"2017-04-06T08:00:00+02:00","to":"2017-04-06T22:30:00+02:00","bookable_till":"2017-04-06T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-06","from":"2017-04-06T22:31:00+02:00","to":"2017-04-06T23:59:00+02:00","bookable_till":"2017-04-06T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-07","from":"2017-04-07T08:00:00+02:00","to":"2017-04-07T22:30:00+02:00","bookable_till":"2017-04-07T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-07","from":"2017-04-07T22:31:00+02:00","to":"2017-04-07T23:59:00+02:00","bookable_till":"2017-04-07T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-08","from":"2017-04-08T08:00:00+02:00","to":"2017-04-08T18:00:00+02:00","bookable_till":"2017-04-08T17:30:00+02:00","timeslot_id":"5658c997331fda3bd7000057"},"drop_time_window":{"date":"2017-04-08","from":"2017-04-08T18:00:00+02:00","to":"2017-04-08T23:00:00+02:00","bookable_till":"2017-04-08T22:30:00+02:00","timeslot_id":"5658c9ac331fda3bd7000058"}},{"catch_time_window":{"date":"2017-04-10","from":"2017-04-10T08:00:00+02:00","to":"2017-04-10T22:30:00+02:00","bookable_till":"2017-04-10T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-10","from":"2017-04-10T22:31:00+02:00","to":"2017-04-10T23:59:00+02:00","bookable_till":"2017-04-10T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-11","from":"2017-04-11T08:00:00+02:00","to":"2017-04-11T22:30:00+02:00","bookable_till":"2017-04-11T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-11","from":"2017-04-11T22:31:00+02:00","to":"2017-04-11T23:59:00+02:00","bookable_till":"2017-04-11T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-12","from":"2017-04-12T08:00:00+02:00","to":"2017-04-12T22:30:00+02:00","bookable_till":"2017-04-12T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-12","from":"2017-04-12T22:31:00+02:00","to":"2017-04-12T23:59:00+02:00","bookable_till":"2017-04-12T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-13","from":"2017-04-13T08:00:00+02:00","to":"2017-04-13T22:30:00+02:00","bookable_till":"2017-04-13T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-13","from":"2017-04-13T22:31:00+02:00","to":"2017-04-13T23:59:00+02:00","bookable_till":"2017-04-13T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-14","from":"2017-04-14T08:00:00+02:00","to":"2017-04-14T22:30:00+02:00","bookable_till":"2017-04-14T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-14","from":"2017-04-14T22:31:00+02:00","to":"2017-04-14T23:59:00+02:00","bookable_till":"2017-04-14T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-15","from":"2017-04-15T08:00:00+02:00","to":"2017-04-15T18:00:00+02:00","bookable_till":"2017-04-15T17:30:00+02:00","timeslot_id":"5658c997331fda3bd7000057"},"drop_time_window":{"date":"2017-04-15","from":"2017-04-15T18:00:00+02:00","to":"2017-04-15T23:00:00+02:00","bookable_till":"2017-04-15T22:30:00+02:00","timeslot_id":"5658c9ac331fda3bd7000058"}},{"catch_time_window":{"date":"2017-04-18","from":"2017-04-18T08:00:00+02:00","to":"2017-04-18T22:30:00+02:00","bookable_till":"2017-04-18T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-18","from":"2017-04-18T22:31:00+02:00","to":"2017-04-18T23:59:00+02:00","bookable_till":"2017-04-18T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}},{"catch_time_window":{"date":"2017-04-19","from":"2017-04-19T08:00:00+02:00","to":"2017-04-19T22:30:00+02:00","bookable_till":"2017-04-19T22:00:00+02:00","timeslot_id":"5489f73a3233741d000c0000"},"drop_time_window":{"date":"2017-04-19","from":"2017-04-19T22:31:00+02:00","to":"2017-04-19T23:59:00+02:00","bookable_till":"2017-04-19T23:29:00+02:00","timeslot_id":"5489f7533233741d000e0000"}}]'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+recorded_with: VCR 2.9.3

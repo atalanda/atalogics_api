@@ -124,6 +124,16 @@ module AtalogicsApi
       }
     end
 
+    # Bang method for next_timeslots, raises an error when response code != 200
+    # CACHEABLE
+    # @param body [Hash] Hash containing {address: "..."} or {lat: 1.1, lng: 2.2}
+    # @return [HTTParty::Response]
+    def next_timeslots! body
+      response = next_timeslots body
+      raise Response::FailedError.new(response) if response.code != 200
+      response
+    end
+
     ################################################################
     # NON-Cacheable requests
     ################################################################

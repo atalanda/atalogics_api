@@ -9,3 +9,10 @@ describe AtalogicsApi::Response do
     expect(response.body).to eq(body)
   end
 end
+
+describe AtalogicsApi::Response, '#to_s' do
+  it 'returns a String representation' do
+    response = described_class.new 200, {foo: 'bar'}
+    expect(response.to_s).to eq('#<AtalogicsApi::Response, code: 200, body: {:foo=>"bar"}>')
+  end
+end

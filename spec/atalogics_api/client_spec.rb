@@ -191,6 +191,19 @@ describe AtalogicsApi::Client, 'endpoints' do
       it_behaves_like 'returns_next_timeslots'
     end
   end
+
+  describe '#next_timeslots!', :vcr do
+    it 'wraps next_timeslots' do
+      response = client.next_timeslots!({ address: "5020 Salzburg, Österreich" })
+      expect(response.code).to eq(200)
+    end
+
+    it 'raises an error when response.code != 200' do
+      expect {
+        client.next_timeslots!({ address: "Foobar" })
+      }.to raise_error(AtalogicsApi::Response::FailedError, '#<AtalogicsApi::Response, code: 404, body: {"error"=>"no_city_found"}>')
+    end
+  end
 end
 
 describe AtalogicsApi::Client, 'cached requests' do
