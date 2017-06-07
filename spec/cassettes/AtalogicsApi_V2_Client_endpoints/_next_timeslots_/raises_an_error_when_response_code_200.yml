@@ -1,0 +1,101 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"5943f3ab60d9f25e77795cba99f2eff9"
+      X-Request-Id:
+      - 69fc7623-33ff-49fd-8df2-aa40e0289673
+      X-Runtime:
+      - '0.037055'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:37 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":167847,"created_at":1496821144}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v2/next_timeslots
+    body:
+      encoding: UTF-8
+      string: '{"address":"Foobar"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '25'
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 4f046882-98fe-4f21-b727-a939781b4080
+      X-Runtime:
+      - '0.036902'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:37 GMT
+    body:
+      encoding: UTF-8
+      string: '{"error":"no_city_found"}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+recorded_with: VCR 2.9.3

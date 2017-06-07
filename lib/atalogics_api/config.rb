@@ -5,7 +5,8 @@ module AtalogicsApi
 
   PRODUCTION_BASE_URL = "https://beta.atalogics.com"
   SANDBOX_BASE_URL = "https://sandbox.atalogics.com"
-  API_URL = "/api/v2"
+  API_URL_V2 = "/api/v2"
+  API_URL_V3 = "/api/v3"
 
   class << self
     attr_accessor :config
@@ -25,9 +26,14 @@ module AtalogicsApi
       config.sandbox_mode
     end
 
-    def api_url
+    def api_url_v2
       valid_config?
-      "#{base_url}#{API_URL}"
+      "#{base_url}#{API_URL_V2}"
+    end
+
+    def api_url_v3
+      valid_config?
+      "#{base_url}#{API_URL_V3}"
     end
 
     def cache_store

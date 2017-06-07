@@ -35,7 +35,8 @@ describe AtalogicsApi do
     context 'production' do
       it 'returns an production api url' do
         expect(AtalogicsApi.base_url).to eq(AtalogicsApi::PRODUCTION_BASE_URL)
-        expect(AtalogicsApi.api_url).to eq("#{AtalogicsApi::PRODUCTION_BASE_URL}#{AtalogicsApi::API_URL}")
+        expect(AtalogicsApi.api_url_v2).to eq("#{AtalogicsApi::PRODUCTION_BASE_URL}#{AtalogicsApi::API_URL_V2}")
+        expect(AtalogicsApi.api_url_v3).to eq("#{AtalogicsApi::PRODUCTION_BASE_URL}#{AtalogicsApi::API_URL_V3}")
       end
     end
 
@@ -45,7 +46,8 @@ describe AtalogicsApi do
           config.sandbox_mode = true
         end
         expect(AtalogicsApi.base_url).to eq(AtalogicsApi::SANDBOX_BASE_URL)
-        expect(AtalogicsApi.api_url).to eq("#{AtalogicsApi::SANDBOX_BASE_URL}#{AtalogicsApi::API_URL}")
+        expect(AtalogicsApi.api_url_v2).to eq("#{AtalogicsApi::SANDBOX_BASE_URL}#{AtalogicsApi::API_URL_V2}")
+        expect(AtalogicsApi.api_url_v3).to eq("#{AtalogicsApi::SANDBOX_BASE_URL}#{AtalogicsApi::API_URL_V3}")
       end
     end
 
@@ -75,7 +77,8 @@ describe AtalogicsApi do
       AtalogicsApi.configure do |config|
         config.client_id = "some_client_id"
       end
-      expect { AtalogicsApi.api_url }.to raise_error AtalogicsApi::MissingClientSecret
+      expect { AtalogicsApi.api_url_v2 }.to raise_error AtalogicsApi::MissingClientSecret
+      expect { AtalogicsApi.api_url_v3 }.to raise_error AtalogicsApi::MissingClientSecret
 
       AtalogicsApi.configure do |config|
         config.client_id = "some_client_id"
@@ -93,7 +96,8 @@ describe AtalogicsApi do
       expect { AtalogicsApi.client_id = "foobar" }.to raise_error NoMethodError
       expect { AtalogicsApi.client_secret = "foobar" }.to raise_error NoMethodError
       expect { AtalogicsApi.sandbox_mode = "foobar" }.to raise_error NoMethodError
-      expect { AtalogicsApi.api_url = "foobar" }.to raise_error NoMethodError
+      expect { AtalogicsApi.api_url_v2 = "foobar" }.to raise_error NoMethodError
+      expect { AtalogicsApi.api_url_v3 = "foobar" }.to raise_error NoMethodError
     end
   end
 end

@@ -5,7 +5,7 @@ http_interactions:
     uri: http://192.168.99.100:3100/oauth/token
     body:
       encoding: UTF-8
-      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"invalid","grant_type":"client_credentials"}'
+      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8","grant_type":"client_credentials"}'
     headers:
       Accept:
       - application/json
@@ -13,8 +13,8 @@ http_interactions:
       - application/json
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
     headers:
       Access-Control-Allow-Origin:
       - "*"
@@ -32,14 +32,12 @@ http_interactions:
       - no-cache
       Content-Type:
       - application/json; charset=utf-8
-      Www-Authenticate:
-      - Bearer realm="Doorkeeper", error="AccessDenied", error_description="The authorization
-        server encountered an unexpected condition which prevented it from fulfilling
-        the request."
+      Etag:
+      - W/"d95bbd595142df5dd2746cfd1c266a75"
       X-Request-Id:
-      - c417e821-e908-4200-a66e-45271db682f5
+      - a555a7e8-2644-4e50-b6fa-64a7f5228ca1
       X-Runtime:
-      - '0.037627'
+      - '0.035606'
       Vary:
       - Origin
       Connection:
@@ -47,14 +45,12 @@ http_interactions:
       Server:
       - thin
       Date:
-      - Wed, 07 Jun 2017 09:01:36 GMT
+      - Wed, 07 Jun 2017 09:01:34 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"error":"AccessDenied","error_description":"The authorization server
-        encountered an unexpected condition which prevented it from fulfilling the
-        request."}'
+      string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":167850,"created_at":1496821144}'
     http_version: 
-  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+  recorded_at: Tue, 02 Feb 2016 16:00:01 GMT
 recorded_with: VCR 2.9.3

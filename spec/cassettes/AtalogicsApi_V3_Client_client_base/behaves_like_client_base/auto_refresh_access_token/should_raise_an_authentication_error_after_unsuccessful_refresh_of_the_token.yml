@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v3/offers
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer EXPIRED_TOKEN
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Length:
+      - '39'
+      X-Request-Id:
+      - f1ba8598-6098-47f1-8192-dc3a255b64c1
+      X-Runtime:
+      - '0.040175'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:57:58 GMT
+    body:
+      encoding: UTF-8
+      string: '{"error":"The access token is invalid"}'
+    http_version: 
+  recorded_at: Wed, 07 Jun 2017 09:57:58 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"wrong_client_id","client_secret":"wrong_client_secret","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="AccessDenied", error_description="The authorization
+        server encountered an unexpected condition which prevented it from fulfilling
+        the request."
+      X-Request-Id:
+      - eec34aed-1397-419d-93e9-7dc8372ec44f
+      X-Runtime:
+      - '0.034063'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:57:58 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"error":"AccessDenied","error_description":"The authorization server
+        encountered an unexpected condition which prevented it from fulfilling the
+        request."}'
+    http_version: 
+  recorded_at: Wed, 07 Jun 2017 09:57:58 GMT
+recorded_with: VCR 2.9.3

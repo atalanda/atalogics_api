@@ -2,10 +2,60 @@
 http_interactions:
 - request:
     method: post
+    uri: http://192.168.99.100:3100/api/v2/addresses/single/check
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer EXPIRED_TOKEN
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - Bearer realm="Doorkeeper", error="invalid_token", error_description="The access
+        token is invalid"
+      Content-Length:
+      - '39'
+      X-Request-Id:
+      - c69e2176-b5cf-4b3a-9e2e-8d42043a71da
+      X-Runtime:
+      - '0.041673'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:36 GMT
+    body:
+      encoding: UTF-8
+      string: '{"error":"The access token is invalid"}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
     uri: http://192.168.99.100:3100/oauth/token
     body:
       encoding: UTF-8
-      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"invalid","grant_type":"client_credentials"}'
+      string: '{"client_id":"wrong_client_id","client_secret":"wrong_client_secret","grant_type":"client_credentials"}'
     headers:
       Accept:
       - application/json
@@ -37,9 +87,9 @@ http_interactions:
         server encountered an unexpected condition which prevented it from fulfilling
         the request."
       X-Request-Id:
-      - c417e821-e908-4200-a66e-45271db682f5
+      - ec7efea4-998c-4d51-932d-3c9f68ff429c
       X-Runtime:
-      - '0.037627'
+      - '0.032965'
       Vary:
       - Origin
       Connection:

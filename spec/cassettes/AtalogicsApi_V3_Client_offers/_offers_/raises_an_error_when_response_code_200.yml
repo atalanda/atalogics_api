@@ -1,0 +1,103 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"35bf98c1d7a4944f4c8a592587cba56c"
+      X-Request-Id:
+      - f917fb78-49c5-413e-9b5c-fe6a35a64607
+      X-Runtime:
+      - '0.039577'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 10:10:47 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":163697,"created_at":1496821144}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v3/offers
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '191'
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - b05cef91-fc7b-4ace-8d37-85907b3eaadf
+      X-Runtime:
+      - '0.033870'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 10:10:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"error":{"key":"ValidationFailed","message":{"catch_address":["are
+        missing, exactly one parameter must be provided"],"drop_address":["are missing,
+        exactly one parameter must be provided"]}}}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,188 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"86670f6157dd8095a818250d5259052d"
+      X-Request-Id:
+      - 7f19d460-4dcb-48bc-ae64-9eee6fcb3893
+      X-Runtime:
+      - '0.041209'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:38 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":167846,"created_at":1496821144}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v2/offers
+    body:
+      encoding: UTF-8
+      string: '{"catch_address":{"street":"Maxglaner Hauptstraße","number":"12","postal_code":5020,"city":"Salzburg"},"drop_address":{"street":"Ignaz
+        Harrer Straße","number":"34","postal_code":5020,"city":"Salzburg"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2746'
+      Etag:
+      - W/"04a90d17729c51192f1d40aa2b644752"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 4b7403c4-208e-4208-aa41-2c2f0c47b370
+      X-Runtime:
+      - '0.133835'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:38 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU1MjZiYjBjNTU2Mjc1MzEyYTA2MDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNy0wNi0wNyIsImRyb3BfZGF0ZSI6IjIwMTctMDYtMDciLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNy0wNi0wN1QxMTowMTozOC42MTkrMDI6MDAifQ==","catch_date":"2017-06-07","drop_date":"2017-06-07","city_id":"5526b96f556275312a040000","fee":{"currency":"eur","amount":6.0},"catch_timeslot":{"id":"5526bb0c556275312a060000","window":{"from":"2017-06-07T09:00:00.000+02:00","to":"2017-06-07T18:00:00.000+02:00","bookable_till":"2017-06-07T17:30:00.000+02:00","usable_till":"2017-06-07T17:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"id":"5538ec835562752b90000000","window":{"from":"2017-06-07T18:00:00.000+02:00","to":"2017-06-07T21:00:00.000+02:00","bookable_till":"2017-06-07T20:30:00.000+02:00","usable_till":"2017-06-07T20:30:00.000+02:00"},"type":"range"}},{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU1MjZiYjBjNTU2Mjc1MzEyYTA2MDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNy0wNi0wOCIsImRyb3BfZGF0ZSI6IjIwMTctMDYtMDgiLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNy0wNi0wN1QxMTowMTozOC42MTkrMDI6MDAifQ==","catch_date":"2017-06-08","drop_date":"2017-06-08","city_id":"5526b96f556275312a040000","fee":{"currency":"eur","amount":6.0},"catch_timeslot":{"id":"5526bb0c556275312a060000","window":{"from":"2017-06-08T09:00:00.000+02:00","to":"2017-06-08T18:00:00.000+02:00","bookable_till":"2017-06-08T17:30:00.000+02:00","usable_till":"2017-06-08T17:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"id":"5538ec835562752b90000000","window":{"from":"2017-06-08T18:00:00.000+02:00","to":"2017-06-08T21:00:00.000+02:00","bookable_till":"2017-06-08T20:30:00.000+02:00","usable_till":"2017-06-08T20:30:00.000+02:00"},"type":"range"}},{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU1MjZiYjBjNTU2Mjc1MzEyYTA2MDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNy0wNi0wOSIsImRyb3BfZGF0ZSI6IjIwMTctMDYtMDkiLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNy0wNi0wN1QxMTowMTozOC42MTkrMDI6MDAifQ==","catch_date":"2017-06-09","drop_date":"2017-06-09","city_id":"5526b96f556275312a040000","fee":{"currency":"eur","amount":6.0},"catch_timeslot":{"id":"5526bb0c556275312a060000","window":{"from":"2017-06-09T09:00:00.000+02:00","to":"2017-06-09T18:00:00.000+02:00","bookable_till":"2017-06-09T17:30:00.000+02:00","usable_till":"2017-06-09T17:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"id":"5538ec835562752b90000000","window":{"from":"2017-06-09T18:00:00.000+02:00","to":"2017-06-09T21:00:00.000+02:00","bookable_till":"2017-06-09T20:30:00.000+02:00","usable_till":"2017-06-09T20:30:00.000+02:00"},"type":"range"}}]'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v2/shipments
+    body:
+      encoding: UTF-8
+      string: '{"catch_address":{"street":"Maxglaner Hauptstraße","number":"12","postal_code":5020,"city":"Salzburg","firstname":"Max","lastname":"Mustermann","phone":"123456789"},"drop_address":{"street":"Ignaz
+        Harrer Straße","number":"34","postal_code":5020,"city":"Salzburg","firstname":"Maria","lastname":"Musterfrau","phone":"123456789"},"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU1MjZiYjBjNTU2Mjc1MzEyYTA2MDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNy0wNi0wNyIsImRyb3BfZGF0ZSI6IjIwMTctMDYtMDciLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNy0wNi0wN1QxMTowMTozOC42MTkrMDI6MDAifQ=="}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1584'
+      Etag:
+      - W/"2ac41222e310017297bda1171fe2b9c6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - c8fa453f-df29-46a0-9130-a231fc383157
+      X-Runtime:
+      - '0.155037'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:38 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0cmFja2luZ19pZCI6IjA5WElHTkFaMzRNTSIsInRyYWNraW5nX2FjY2Vz
+        c19pZCI6IjYwMTkyYWExNzlhMjAzYjQyZGM1MzExMzAyMDk0MWM0IiwiZXh0
+        ZXJuYWxfaWQiOm51bGwsInN0YXRlIjoib3JkZXJlZCIsIm9yZGVyZWRfYXQi
+        OiIyMDE3LTA2LTA3VDExOjAxOjM4Ljc0OSswMjowMCIsImNhdGNoX2RhdGUi
+        OiIyMDE3LTA2LTA3IiwiZHJvcF9kYXRlIjoiMjAxNy0wNi0wNyIsImNvbG9y
+        X2lkeCI6OSwid2ViaG9va191cmwiOm51bGwsIndlYmhvb2tfZ3BzX3VybCI6
+        bnVsbCwiY2F0Y2hfYWRkcmVzcyI6eyJmaXJzdG5hbWUiOiJNYXgiLCJsYXN0
+        bmFtZSI6Ik11c3Rlcm1hbm4iLCJlbWFpbCI6bnVsbCwicGhvbmUiOiIxMjM0
+        NTY3ODkiLCJzdHJlZXQiOiJNYXhnbGFuZXIgSGF1cHRzdHJhw59lIiwibnVt
+        YmVyIjoiMTIiLCJjaXR5IjoiU2FsemJ1cmciLCJwb3N0YWxfY29kZSI6IjUw
+        MjAiLCJjb3VudHJ5Ijoiw5ZzdGVycmVpY2giLCJjb21wYW55X25hbWUiOm51
+        bGwsImFkZGl0aW9uYWxfaW5mbyI6bnVsbCwibGF0Ijo0Ny43OTYzOTQ5LCJs
+        bmciOjEzLjAyNDE4MzN9LCJkcm9wX2FkZHJlc3MiOnsiZmlyc3RuYW1lIjoi
+        TWFyaWEiLCJsYXN0bmFtZSI6Ik11c3RlcmZyYXUiLCJlbWFpbCI6bnVsbCwi
+        cGhvbmUiOiIxMjM0NTY3ODkiLCJzdHJlZXQiOiJJZ25heiBIYXJyZXIgU3Ry
+        YcOfZSIsIm51bWJlciI6IjM0IiwiY2l0eSI6IlNhbHpidXJnIiwicG9zdGFs
+        X2NvZGUiOiI1MDIwIiwiY291bnRyeSI6IsOWc3RlcnJlaWNoIiwiY29tcGFu
+        eV9uYW1lIjpudWxsLCJhZGRpdGlvbmFsX2luZm8iOm51bGwsImxhdCI6NDcu
+        ODExNDk5OSwibG5nIjoxMy4wMzA4NjI0fSwiZXh0cmFfc2VydmljZXMiOltd
+        LCJpZCI6IjU5MzdjMGYyNjMxODY1MDAyZTAwMDA1MiIsImNhbmNlbGFibGU/
+        Ijp0cnVlLCJjb2xvciI6eyJuYW1lIjoiZGFya3R1cnF1b2lzZSIsInZhbHVl
+        IjoiIzAwQ0VEMSJ9LCJuZWVkc19hX2NvdXJpZXIiOnRydWUsImNhdGNoX3Rp
+        bWVzbG90Ijp7ImlkIjoiNTUyNmJiMGM1NTYyNzUzMTJhMDYwMDAwIiwid2lu
+        ZG93Ijp7ImZyb20iOiIyMDE3LTA2LTA3VDA5OjAwOjAwLjAwMCswMjowMCIs
+        InRvIjoiMjAxNy0wNi0wN1QxODowMDowMC4wMDArMDI6MDAiLCJib29rYWJs
+        ZV90aWxsIjoiMjAxNy0wNi0wN1QxNzozMDowMC4wMDArMDI6MDAiLCJ1c2Fi
+        bGVfdGlsbCI6IjIwMTctMDYtMDdUMTc6MzA6MDAuMDAwKzAyOjAwIn0sInR5
+        cGUiOiJyYW5nZSJ9LCJkcm9wX3RpbWVzbG90Ijp7ImlkIjoiNTUzOGVjODM1
+        NTYyNzUyYjkwMDAwMDAwIiwid2luZG93Ijp7ImZyb20iOiIyMDE3LTA2LTA3
+        VDE4OjAwOjAwLjAwMCswMjowMCIsInRvIjoiMjAxNy0wNi0wN1QyMTowMDow
+        MC4wMDArMDI6MDAiLCJib29rYWJsZV90aWxsIjoiMjAxNy0wNi0wN1QyMDoz
+        MDowMC4wMDArMDI6MDAiLCJ1c2FibGVfdGlsbCI6IjIwMTctMDYtMDdUMjA6
+        MzA6MDAuMDAwKzAyOjAwIn0sInR5cGUiOiJyYW5nZSJ9LCJ6b25lIjoiU2Fs
+        emJ1cmciLCJjb3VyaWVycyI6W10sInRyYWNraW5nX3VybCI6Imh0dHA6Ly9s
+        b2NhbGhvc3Q6MzAwMC90cmFjay82MDE5MmFhMTc5YTIwM2I0MmRjNTMxMTMw
+        MjA5NDFjNCJ9
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+recorded_with: VCR 2.9.3

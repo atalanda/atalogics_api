@@ -35,9 +35,9 @@ http_interactions:
       Etag:
       - W/"44d976453f60cf77ff2d5fb252cf7f08"
       X-Request-Id:
-      - 64231b08-ec9e-452a-ac2c-4c18e3e97267
+      - c9fc9921-7393-4461-b7fb-cf3c4759d6bf
       X-Runtime:
-      - '0.039905'
+      - '0.040689'
       Vary:
       - Origin
       Connection:
@@ -51,6 +51,54 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":167848,"created_at":1496821144}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v2/addresses/single/check
+    body:
+      encoding: UTF-8
+      string: '{"street":"Fakestreet","number":"12","postal_code":31415,"city":"Faketown"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '83'
+      Etag:
+      - W/"294599984439d5e1078ec0a3d97c2050"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9495a9a6-fb7f-4afa-8e35-d92642eeeda7
+      X-Runtime:
+      - '0.054152'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:36 GMT
+    body:
+      encoding: UTF-8
+      string: '{"success":false,"existent":false,"error":["Adresse konnte nicht gefunden
+        werden"]}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 recorded_with: VCR 2.9.3

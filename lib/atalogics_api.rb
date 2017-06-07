@@ -5,7 +5,10 @@ require 'atalogics_api/config'
 require 'atalogics_api/shared_helpers'
 require 'atalogics_api/auth'
 require 'atalogics_api/response'
-require 'atalogics_api/client'
+require 'atalogics_api/client_base'
+require 'atalogics_api/v2/client'
+require 'atalogics_api/v3/client'
+require 'atalogics_api/v3/offer_key'
 
 # Global Module for every sub classes
 #

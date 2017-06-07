@@ -24,7 +24,7 @@ describe AtalogicsApi::Auth do
 
     it "should get the base_uri and change it when the config changes" do
       AtalogicsApi::Auth.set_base_uri
-      expect(AtalogicsApi::Auth.base_uri).to eq("http://localhost:3000/oauth/token")
+      expect(AtalogicsApi::Auth.base_uri).to eq("http://192.168.99.100:3100/oauth/token")
 
       AtalogicsApi.configure do |config|
         config.sandbox_mode = true
@@ -52,7 +52,7 @@ describe AtalogicsApi::Auth do
       expect(auth.response.code).to eq(200)
       expect(auth.access_token.length).to be > 15
       expect(auth.token_type).to eq("bearer")
-      expect(auth.expires_in).to eq(172800)
+      expect(auth.expires_in).to be > 100 # just check if we have seconds left
     end
 
     it "should raise an error, when the server returns 401", :vcr do

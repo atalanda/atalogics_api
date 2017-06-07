@@ -1,0 +1,138 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"286a5b053b0f2406b090077791e4b5e8"
+      X-Request-Id:
+      - 3721e195-ac66-4d97-8ce9-b70b6137edbf
+      X-Runtime:
+      - '0.089767'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:57:11 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":164513,"created_at":1496821144}'
+    http_version: 
+  recorded_at: Wed, 07 Jun 2017 09:57:11 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v3/shipments
+    body:
+      encoding: UTF-8
+      string: '{"offer_key":"MjAxNy0wNi0wNysrNTUyNmJiMGM1NTYyNzUzMTJhMDYwMDAwKysyMDE3LTA2LTA3Kys1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDA=","catch_address":{"firstname":"John","lastname":"Doe","street":"Auerspergstr","number":"44","postal_code":"5020","city":"Salzburg","phone":"123"},"drop_address":{"firstname":"Jane","lastname":"Doe","street":"Auerspergstr","number":"12","postal_code":"5020","city":"Salzburg","phone":"456"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1531'
+      Etag:
+      - W/"b6c2e9f9b38836da901a980c2ece8467"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - d2e626b5-5ecf-48be-a09d-d4f9d4e8048b
+      X-Runtime:
+      - '0.113655'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:57:11 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6IjU5MzdjZGY3NjMxODY1MDAyZTAwMDA3MCIsInRyYWNraW5nX2lk
+        IjoiMDJYQVVFUlMxMkpEIiwidHJhY2tpbmdfYWNjZXNzX2lkIjoiMzU1ZGU0
+        MTgzMWY1NjFiMGQ1ODYwODc0ZjNmMjAwMDQiLCJleHRlcm5hbF9pZCI6bnVs
+        bCwic3RhdGUiOiJvcmRlcmVkIiwib3JkZXJlZF9hdCI6IjIwMTctMDYtMDdU
+        MTE6NTc6MTEuOTEyKzAyOjAwIiwiY2F0Y2hfZGF0ZSI6IjIwMTctMDYtMDci
+        LCJkcm9wX2RhdGUiOiIyMDE3LTA2LTA3IiwiY29sb3JfaWR4IjoyLCJ3ZWJo
+        b29rX3VybCI6bnVsbCwid2ViaG9va19ncHNfdXJsIjpudWxsLCJjYW5jZWxh
+        YmxlPyI6dHJ1ZSwiY29sb3IiOnsibmFtZSI6ImJsdWUiLCJ2YWx1ZSI6IiMx
+        ZTY5YjYifSwibmVlZHNfYV9jb3VyaWVyIjp0cnVlLCJ6b25lIjoiU2FsemJ1
+        cmciLCJ0cmFja2luZ191cmwiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvdHJh
+        Y2svMzU1ZGU0MTgzMWY1NjFiMGQ1ODYwODc0ZjNmMjAwMDQiLCJjYXRjaF9h
+        ZGRyZXNzIjp7ImZpcnN0bmFtZSI6IkpvaG4iLCJsYXN0bmFtZSI6IkRvZSIs
+        ImVtYWlsIjpudWxsLCJwaG9uZSI6IjEyMyIsInN0cmVldCI6IkF1ZXJzcGVy
+        Z3N0ciIsIm51bWJlciI6IjQ0IiwiY2l0eSI6IlNhbHpidXJnIiwicG9zdGFs
+        X2NvZGUiOiI1MDIwIiwiY291bnRyeSI6IsOWc3RlcnJlaWNoIiwiY29tcGFu
+        eV9uYW1lIjpudWxsLCJhZGRpdGlvbmFsX2luZm8iOm51bGwsImxhdCI6NDcu
+        ODA2NTI1OCwibG5nIjoxMy4wNDk2MzY0fSwiZHJvcF9hZGRyZXNzIjp7ImZp
+        cnN0bmFtZSI6IkphbmUiLCJsYXN0bmFtZSI6IkRvZSIsImVtYWlsIjpudWxs
+        LCJwaG9uZSI6IjQ1NiIsInN0cmVldCI6IkF1ZXJzcGVyZ3N0ciIsIm51bWJl
+        ciI6IjEyIiwiY2l0eSI6IlNhbHpidXJnIiwicG9zdGFsX2NvZGUiOiI1MDIw
+        IiwiY291bnRyeSI6IsOWc3RlcnJlaWNoIiwiY29tcGFueV9uYW1lIjpudWxs
+        LCJhZGRpdGlvbmFsX2luZm8iOm51bGwsImxhdCI6NDcuODA3Njg3NywibG5n
+        IjoxMy4wNDI4NTEzfSwiY2F0Y2hfdGltZXNsb3QiOnsiaWQiOiI1NTI2YmIw
+        YzU1NjI3NTMxMmEwNjAwMDAiLCJ3aW5kb3ciOnsiZnJvbSI6IjIwMTctMDYt
+        MDdUMDk6MDA6MDAuMDAwKzAyOjAwIiwidG8iOiIyMDE3LTA2LTA3VDE4OjAw
+        OjAwLjAwMCswMjowMCIsImJvb2thYmxlX3RpbGwiOiIyMDE3LTA2LTA3VDE3
+        OjMwOjAwLjAwMCswMjowMCIsInVzYWJsZV90aWxsIjoiMjAxNy0wNi0wN1Qx
+        NzozMDowMC4wMDArMDI6MDAifSwidHlwZSI6InJhbmdlIn0sImRyb3BfdGlt
+        ZXNsb3QiOnsiaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJ3aW5k
+        b3ciOnsiZnJvbSI6IjIwMTctMDYtMDdUMTg6MDA6MDAuMDAwKzAyOjAwIiwi
+        dG8iOiIyMDE3LTA2LTA3VDIxOjAwOjAwLjAwMCswMjowMCIsImJvb2thYmxl
+        X3RpbGwiOiIyMDE3LTA2LTA3VDIwOjMwOjAwLjAwMCswMjowMCIsInVzYWJs
+        ZV90aWxsIjoiMjAxNy0wNi0wN1QyMDozMDowMC4wMDArMDI6MDAifSwidHlw
+        ZSI6InJhbmdlIn0sImV4dHJhX3NlcnZpY2VzIjpbXSwiY291cmllcnMiOltd
+        fQ==
+    http_version: 
+  recorded_at: Wed, 07 Jun 2017 09:57:11 GMT
+recorded_with: VCR 2.9.3

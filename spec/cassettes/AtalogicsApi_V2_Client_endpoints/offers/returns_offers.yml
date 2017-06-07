@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"86670f6157dd8095a818250d5259052d"
+      X-Request-Id:
+      - 4225d945-26d9-4457-b8ec-3a5d5992d69e
+      X-Runtime:
+      - '0.032402'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:38 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":167846,"created_at":1496821144}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/api/v2/offers
+    body:
+      encoding: UTF-8
+      string: '{"catch_address":{"street":"Maxglaner Hauptstraße","number":"12","postal_code":5020,"city":"Salzburg"},"drop_address":{"street":"Ignaz
+        Harrer Straße","number":"34","postal_code":5020,"city":"Salzburg"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2746'
+      Etag:
+      - W/"f15ad90106ca960a613a88f4b5345f41"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 9f6b77da-b956-4100-a338-2018bc467ea6
+      X-Runtime:
+      - '0.136637'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Wed, 07 Jun 2017 09:01:38 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU1MjZiYjBjNTU2Mjc1MzEyYTA2MDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNy0wNi0wNyIsImRyb3BfZGF0ZSI6IjIwMTctMDYtMDciLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNy0wNi0wN1QxMTowMTozOC40MTArMDI6MDAifQ==","catch_date":"2017-06-07","drop_date":"2017-06-07","city_id":"5526b96f556275312a040000","fee":{"currency":"eur","amount":6.0},"catch_timeslot":{"id":"5526bb0c556275312a060000","window":{"from":"2017-06-07T09:00:00.000+02:00","to":"2017-06-07T18:00:00.000+02:00","bookable_till":"2017-06-07T17:30:00.000+02:00","usable_till":"2017-06-07T17:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"id":"5538ec835562752b90000000","window":{"from":"2017-06-07T18:00:00.000+02:00","to":"2017-06-07T21:00:00.000+02:00","bookable_till":"2017-06-07T20:30:00.000+02:00","usable_till":"2017-06-07T20:30:00.000+02:00"},"type":"range"}},{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU1MjZiYjBjNTU2Mjc1MzEyYTA2MDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNy0wNi0wOCIsImRyb3BfZGF0ZSI6IjIwMTctMDYtMDgiLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNy0wNi0wN1QxMTowMTozOC40MTArMDI6MDAifQ==","catch_date":"2017-06-08","drop_date":"2017-06-08","city_id":"5526b96f556275312a040000","fee":{"currency":"eur","amount":6.0},"catch_timeslot":{"id":"5526bb0c556275312a060000","window":{"from":"2017-06-08T09:00:00.000+02:00","to":"2017-06-08T18:00:00.000+02:00","bookable_till":"2017-06-08T17:30:00.000+02:00","usable_till":"2017-06-08T17:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"id":"5538ec835562752b90000000","window":{"from":"2017-06-08T18:00:00.000+02:00","to":"2017-06-08T21:00:00.000+02:00","bookable_till":"2017-06-08T20:30:00.000+02:00","usable_till":"2017-06-08T20:30:00.000+02:00"},"type":"range"}},{"offer_id":"eyJjYXRjaF90aW1lc2xvdF9pZCI6IjU1MjZiYjBjNTU2Mjc1MzEyYTA2MDAwMCIsImRyb3BfdGltZXNsb3RfaWQiOiI1NTM4ZWM4MzU1NjI3NTJiOTAwMDAwMDAiLCJjYXRjaF9kYXRlIjoiMjAxNy0wNi0wOSIsImRyb3BfZGF0ZSI6IjIwMTctMDYtMDkiLCJleHRyYV9zZXJ2aWNlcyI6W10sInZhbGlkX2F0IjoiMjAxNy0wNi0wN1QxMTowMTozOC40MTArMDI6MDAifQ==","catch_date":"2017-06-09","drop_date":"2017-06-09","city_id":"5526b96f556275312a040000","fee":{"currency":"eur","amount":6.0},"catch_timeslot":{"id":"5526bb0c556275312a060000","window":{"from":"2017-06-09T09:00:00.000+02:00","to":"2017-06-09T18:00:00.000+02:00","bookable_till":"2017-06-09T17:30:00.000+02:00","usable_till":"2017-06-09T17:30:00.000+02:00"},"type":"range"},"drop_timeslot":{"id":"5538ec835562752b90000000","window":{"from":"2017-06-09T18:00:00.000+02:00","to":"2017-06-09T21:00:00.000+02:00","bookable_till":"2017-06-09T20:30:00.000+02:00","usable_till":"2017-06-09T20:30:00.000+02:00"},"type":"range"}}]'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
+recorded_with: VCR 2.9.3

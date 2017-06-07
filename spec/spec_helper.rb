@@ -15,6 +15,8 @@ RSpec.configure do |config|
   end
 end
 
+Dir["./spec/shared_examples/**/*.rb"].each { |f| require f }
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.default_cassette_options = { record: :once, match_requests_on: [:method, :uri, :body]}
@@ -33,9 +35,9 @@ end
 
 def real_configuration
   AtalogicsApi.configure do |config|
-    config.client_id = "bc8287cb2899d86ad2427ee632ed002ab9576eddf68ef028ab9f0f14c5a32e53"
-    config.client_secret = "2457530252f197bf7a4ec07555367e52e02e5b0f6526be79bf46d980dd643de5"
-    config.production_base_url = "http://localhost:3000"
+    config.client_id = "409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c"
+    config.client_secret = "f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8"
+    config.production_base_url = "http://192.168.99.100:3100"
   end
 
   # AtalogicsApi.configure do |config|
