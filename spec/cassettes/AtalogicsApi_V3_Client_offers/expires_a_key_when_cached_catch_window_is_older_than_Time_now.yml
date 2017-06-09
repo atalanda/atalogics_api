@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://192.168.99.100:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"409747accefbde0b38c1c1a4be2b333786c251ce6043ee187e907697db43214c","client_secret":"f80c897f5160fdfef198cbaef011183c440b84ae103c0beb51807ba4b39acfc8","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"6f55d13d2533564066eaf3a3ae82ce45"
+      X-Request-Id:
+      - 29ba3611-aad3-4865-9d9c-0a5c8936ca0b
+      X-Runtime:
+      - '0.097039'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Fri, 09 Jun 2017 11:28:01 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"790c2025aa5d4dd1e99e86b8b8616012e411548616e0cfadf562f92817c264a9","token_type":"bearer","expires_in":171957,"created_at":1497006838}'
+    http_version: 
+  recorded_at: Tue, 02 Feb 2016 16:00:01 GMT
+recorded_with: VCR 2.9.3

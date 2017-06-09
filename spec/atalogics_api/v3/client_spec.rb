@@ -17,6 +17,8 @@ describe AtalogicsApi::V3::Client, '#offers', :vcr do
   let(:body) { { catch_address: 'Auerspergstr 44 Salzburg', drop_address: 'Getreidegasse 24 Salzburg' } }
 
   it 'returns offers' do
+    Timecop.freeze "2017-06-07T12:00"
+
     response = client.offers body
     expect(response.code).to eq(200)
     expect(response.body["offers"]).not_to be_nil
@@ -31,6 +33,21 @@ describe AtalogicsApi::V3::Client, '#offers', :vcr do
     cache_key = "V3_/offers_Auerspergstr 44 Salzburg_Getreidegasse 24 Salzburg"
     expect(AtalogicsApi.cache_store.keys).to eq([cache_key])
     expect(AtalogicsApi.cache_store.ttl(cache_key)).to eq(24*60*60)
+  end
+
+  it 'expires a key, when cached catch_window is older than Time.now' do
+    # current time is one second after catch_window usable_till
+    Timecop.freeze("2016-02-02T17:00:01")
+
+    cache_key = "V3_/offers_bar"
+    cached_body = {"offers" => [{"catch_window" => {"usable_till" => "2016-02-02T17:00:00+01:00"}}]}
+    AtalogicsApi.cache_store.set(cache_key, [200, cached_body].to_json)
+
+    expect(client.class).to receive(:post).and_return(double("httparty_response", code: 200, parsed_response: {new: "response"}))
+
+    client.offers({"foo" => "bar"})
+
+    expect(AtalogicsApi.cache_store.get(cache_key)).to eq('[200,{"new":"response"}]')
   end
 
   describe '#offers!', :vcr do
