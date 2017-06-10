@@ -1,16 +1,13 @@
 require 'spec_helper'
 
 describe AtalogicsApi::V2::Client, 'client base' do
+  include_context 'client_context'
   let(:test_method) { :address_check }
   it_behaves_like 'client_base'
 end
 
 describe AtalogicsApi::V2::Client, 'endpoints' do
-  before :each do
-    real_configuration
-  end
-
-  let(:client) { described_class.new }
+  include_context 'client_context'
 
   describe 'address_check', :vcr do
     it "returns success" do
@@ -74,6 +71,8 @@ describe AtalogicsApi::V2::Client, 'endpoints' do
   end
 
   describe 'purchase_offer', :vcr do
+    include_context 'non_cacheable_requests'
+
     it "should purchase an offer" do
       # first get an offer
       hash = {
@@ -157,15 +156,7 @@ describe AtalogicsApi::V2::Client, 'endpoints' do
 end
 
 describe AtalogicsApi::V2::Client, 'cached requests' do
-  before :each do
-    real_configuration
-    AtalogicsApi.configure do |config|
-      config.cache_store = Redis.new
-    end
-  end
-
-  let(:client) { described_class.new }
-  let(:redis) { Redis.new }
+  include_context 'client_context'
 
   shared_examples 'cached_response' do
     it 'caches a response' do

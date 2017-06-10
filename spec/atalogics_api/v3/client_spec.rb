@@ -6,14 +6,8 @@ describe AtalogicsApi::V3::Client, 'client base' do
 end
 
 describe AtalogicsApi::V3::Client, '#offers', :vcr do
-  before do
-    real_configuration
-    AtalogicsApi.configure do |config|
-      config.cache_store = Redis.new
-    end
-  end
+  include_context 'client_context'
 
-  let(:client) { described_class.new }
   let(:body) { { catch_address: 'Auerspergstr 44 Salzburg', drop_address: 'Getreidegasse 24 Salzburg' } }
 
   it 'returns offers' do
@@ -63,11 +57,8 @@ describe AtalogicsApi::V3::Client, '#offers', :vcr do
 end
 
 describe AtalogicsApi::V3::Client, '#shipments', :vcr do
-  before do
-    real_configuration
-  end
-
-  let(:client) { described_class.new }
+  include_context 'client_context'
+  include_context 'non_cacheable_requests'
 
   it 'creates a shipment based on an offer key' do
     body = {
@@ -79,5 +70,6 @@ describe AtalogicsApi::V3::Client, '#shipments', :vcr do
     response = client.shipments body
     expect(response.code).to eq(201)
     expect(response.body["state"]).to eq("ordered")
+    expect(AtalogicsApi.cache_store.keys).to be_empty
   end
 end

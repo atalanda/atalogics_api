@@ -53,8 +53,9 @@ module AtalogicsApi
     end
 
     private def perform_api_post *args, &block
-      cache_key = namespace_cache_key args[1].delete(:cache_key)
+      cache_key = args[1].delete(:cache_key)
       if cache_key
+        cache_key = namespace_cache_key cache_key
         response = get_cached_result(cache_key)
         expired_block = args[1].delete(:expired?)
         expired = expired_block.call(response) if expired_block
