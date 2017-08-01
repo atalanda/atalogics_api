@@ -198,12 +198,13 @@ describe AtalogicsApi::V2::Client, 'cached requests' do
   describe 'multi_address_check', :vcr do
     let(:endpoint) { :multi_address_check }
     let(:body) {{
+      city_key: "SALZBURG",
       addresses: [
         {lat: 47.8065258, lng: 13.0474424},
         {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"}
       ]
     }}
-    let(:cache_key) { "V2_/addresses/multi/check_____47.8065258_13.0474424_Radetzkystrasse_7_5020_Salzburg__" }
+    let(:cache_key) { "V2_/addresses/multi/check_SALZBURG_____47.8065258_13.0474424_Radetzkystrasse_7_5020_Salzburg__" }
 
     it_behaves_like 'cached_response'
   end

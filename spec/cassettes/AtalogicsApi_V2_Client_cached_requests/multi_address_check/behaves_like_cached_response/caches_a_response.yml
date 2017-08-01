@@ -33,11 +33,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"6c605d6a6aab53f0ed65d74d836eab1a"
+      - W/"06370e56d2d801bcb0930e180146a67c"
       X-Request-Id:
-      - bc32d6d3-f40e-4542-90c7-a554f7af7d01
+      - 5bcdff0c-7dc7-44e1-809d-3eec7a459f9f
       X-Runtime:
-      - '0.040780'
+      - '0.083156'
       Vary:
       - Origin
       Connection:
@@ -45,12 +45,12 @@ http_interactions:
       Server:
       - thin
       Date:
-      - Wed, 07 Jun 2017 09:01:35 GMT
+      - Tue, 01 Aug 2017 15:52:25 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":167849,"created_at":1496821144}'
+      string: '{"access_token":"6f8c0cd105b978e438a4d59443d760efdcad2c4e3bbc04ea84b465f6c7cd56ff","token_type":"bearer","expires_in":172366,"created_at":1501602311}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 - request:
@@ -58,14 +58,14 @@ http_interactions:
     uri: http://192.168.99.100:3100/api/v2/addresses/multi/check
     body:
       encoding: UTF-8
-      string: '{"addresses":[{"lat":47.8065258,"lng":13.0474424},{"street":"Radetzkystrasse","number":"7","postal_code":5020,"city":"Salzburg"}]}'
+      string: '{"city_key":"SALZBURG","addresses":[{"lat":47.8065258,"lng":13.0474424},{"street":"Radetzkystrasse","number":"7","postal_code":5020,"city":"Salzburg"}]}'
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
       Authorization:
-      - bearer fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7
+      - bearer 6f8c0cd105b978e438a4d59443d760efdcad2c4e3bbc04ea84b465f6c7cd56ff
   response:
     status:
       code: 200
@@ -78,15 +78,15 @@ http_interactions:
       Content-Type:
       - application/json
       Content-Length:
-      - '49'
+      - '101'
       Etag:
-      - W/"776a13d3f390fd0522ffce5cb5dea536"
+      - W/"c9ceb45a9f8932c30e8b5cca65657407"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - dbe4f622-e520-48fa-b0ab-ac5b3fccde73
+      - 09299175-0229-44c2-98af-f1108b588f67
       X-Runtime:
-      - '0.047005'
+      - '0.081006'
       Vary:
       - Origin
       Connection:
@@ -94,10 +94,11 @@ http_interactions:
       Server:
       - thin
       Date:
-      - Wed, 07 Jun 2017 09:01:35 GMT
+      - Tue, 01 Aug 2017 15:52:25 GMT
     body:
       encoding: UTF-8
-      string: '{"success":true,"same_area":true,"existent":true}'
+      string: '{"success":false,"same_area":false,"existent":false,"error":["Adresse
+        konnte nicht gefunden werden"]}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
-recorded_with: VCR 2.9.3
+recorded_with: VCR 3.0.3
