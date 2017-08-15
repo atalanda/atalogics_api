@@ -33,11 +33,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"06370e56d2d801bcb0930e180146a67c"
+      - W/"051f183a6694e1fff765ea343281be41"
       X-Request-Id:
-      - 5bcdff0c-7dc7-44e1-809d-3eec7a459f9f
+      - fa4fa5f8-78b9-4e19-9337-edb5d4b61be2
       X-Runtime:
-      - '0.083156'
+      - '0.037478'
       Vary:
       - Origin
       Connection:
@@ -45,12 +45,12 @@ http_interactions:
       Server:
       - thin
       Date:
-      - Tue, 01 Aug 2017 15:52:25 GMT
+      - Tue, 15 Aug 2017 09:46:26 GMT
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
-      string: '{"access_token":"6f8c0cd105b978e438a4d59443d760efdcad2c4e3bbc04ea84b465f6c7cd56ff","token_type":"bearer","expires_in":172366,"created_at":1501602311}'
+      string: '{"access_token":"a3253d59f47189f72d27b19e9ba3d173b117bbd3d1ac9799b6d2b96aa7a2bf45","token_type":"bearer","expires_in":172469,"created_at":1502790055}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 - request:
@@ -58,14 +58,14 @@ http_interactions:
     uri: http://192.168.99.100:3100/api/v2/addresses/multi/check
     body:
       encoding: UTF-8
-      string: '{"city_key":"SALZBURG","addresses":[{"lat":47.8065258,"lng":13.0474424},{"street":"Radetzkystrasse","number":"7","postal_code":5020,"city":"Salzburg"}]}'
+      string: '{"addresses":[{"lat":47.8065258,"lng":13.0474424,"city_key":"SALZBURG"},{"street":"Radetzkystrasse","number":"7","postal_code":5020,"city":"Salzburg","city_key":"SALZBURG"}]}'
     headers:
       Accept:
       - application/json
       Content-Type:
       - application/json
       Authorization:
-      - bearer 6f8c0cd105b978e438a4d59443d760efdcad2c4e3bbc04ea84b465f6c7cd56ff
+      - bearer a3253d59f47189f72d27b19e9ba3d173b117bbd3d1ac9799b6d2b96aa7a2bf45
   response:
     status:
       code: 200
@@ -78,15 +78,15 @@ http_interactions:
       Content-Type:
       - application/json
       Content-Length:
-      - '101'
+      - '49'
       Etag:
-      - W/"c9ceb45a9f8932c30e8b5cca65657407"
+      - W/"776a13d3f390fd0522ffce5cb5dea536"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 09299175-0229-44c2-98af-f1108b588f67
+      - e75a98b5-a3ef-4076-a2be-2b2de4e0300e
       X-Runtime:
-      - '0.081006'
+      - '0.885330'
       Vary:
       - Origin
       Connection:
@@ -94,11 +94,10 @@ http_interactions:
       Server:
       - thin
       Date:
-      - Tue, 01 Aug 2017 15:52:25 GMT
+      - Tue, 15 Aug 2017 09:46:27 GMT
     body:
       encoding: UTF-8
-      string: '{"success":false,"same_area":false,"existent":false,"error":["Adresse
-        konnte nicht gefunden werden"]}'
+      string: '{"success":true,"same_area":true,"existent":true}'
     http_version: 
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 recorded_with: VCR 3.0.3

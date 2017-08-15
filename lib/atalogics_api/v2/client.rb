@@ -33,9 +33,8 @@ module AtalogicsApi
       # @return [HTTParty::Response]
       def multi_address_check addresses
         url = "/addresses/multi/check"
-        cache_key = "#{url}_#{addresses[:city_key]}"
-        addresses[:addresses].each do |address|
-          cache_key += "_#{address[:street]}_#{address[:number]}_#{address[:postal_code]}_#{address[:city]}_#{address[:lat]}_#{address[:lng]}"
+        cache_key = addresses[:addresses].inject(url) do |key, address|
+          "_#{key}_#{address[:city_key]}_#{address[:street]}_#{address[:number]}_#{address[:postal_code]}_#{address[:city]}_#{address[:lat]}_#{address[:lng]}"
         end
         perform_api_post(url, body: addresses.to_json, cache_key: cache_key)
       end
