@@ -2,12 +2,12 @@ shared_context 'client_context' do
   before do
     real_configuration
     AtalogicsApi.configure do |config|
-      config.cache_store = Redis.new
+      config.cache_store = Redis.new(host: "redis")
     end
   end
 
   let(:client) { described_class.new }
-  let(:redis) { Redis.new }
+  let(:redis) { Redis.new(host: "redis") }
 end
 
 shared_context 'non_cacheable_requests' do

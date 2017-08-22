@@ -3,7 +3,7 @@ module AtalogicsApi
   class MissingClientId < StandardError; end
   class MissingClientSecret < StandardError; end
 
-  PRODUCTION_BASE_URL = "https://beta.atalogics.com"
+  PRODUCTION_BASE_URL = "https://atalogics.com"
   SANDBOX_BASE_URL = "https://sandbox.atalogics.com"
   API_URL_V2 = "/api/v2"
   API_URL_V3 = "/api/v3"
