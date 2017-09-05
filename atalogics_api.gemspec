@@ -1,7 +1,8 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+# encoding: utf-8
+
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'atalogics_api/version'
+require "atalogics_api/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "atalogics_api"
@@ -19,17 +20,17 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.9"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rspec-mocks'
-  spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'pry-byebug'
-  spec.add_development_dependency 'pry-alias'
-  spec.add_development_dependency 'webmock'
-  spec.add_development_dependency 'vcr'
-  spec.add_development_dependency 'yard'
-  spec.add_development_dependency 'timecop'
-  spec.add_development_dependency 'redis'
-  spec.add_dependency "httparty", "~> 0.8.3"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rspec-mocks"
+  spec.add_development_dependency "pry"
+  spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "pry-alias"
+  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "vcr"
+  spec.add_development_dependency "yard"
+  spec.add_development_dependency "timecop"
+  spec.add_development_dependency "redis"
+  spec.add_dependency "httparty"
 end

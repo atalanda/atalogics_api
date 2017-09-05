@@ -11,7 +11,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     AtalogicsApi.reset
-    Redis.new.flushall
+    Redis.new(host: "redis").flushall
   end
 end
 
