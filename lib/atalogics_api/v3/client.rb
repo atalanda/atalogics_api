@@ -24,7 +24,7 @@ module AtalogicsApi
       def offers body
         url = "/offers"
         cache_key = url + "_" + body.sort.map(&:last).join("_")
-        perform_api_post url, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
+        perform_cached_api_request url, method: :post, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
           # a cached result expires when the current Time is after the first offer["catch_window"]["usable_till"]
           cached_result && Time.now > Time.parse(cached_result.body["offers"].first["catch_window"]["usable_till"])
         }
@@ -40,6 +40,22 @@ module AtalogicsApi
         response
       end
 
+      # Returns delivery areas of a given city
+      # CACHEABLE
+      # @param key [String] String containing an atalogics city key, see docs
+      # @return [HTTParty::Response]
+      def delivery_areas key
+        url = "/cities/#{key}"
+        perform_cached_api_request(url, {
+          method: :get,
+          cache_key: url,
+          expires_at: (Time.now + 8 * 60 * 60).to_i,
+          expired?: lambda do |cached_result|
+            cached_result && Time.now.to_i > cached_result.body["expires_at"]
+          end
+        })
+      end
+
       ################################################################
       # NON-Cacheable requests
       ################################################################
@@ -48,7 +64,7 @@ module AtalogicsApi
       # @param body [Hash] Hash with catch and drop information see docs
       # @return [HTTParty::Response]
       def shipments body
-        perform_api_post("/shipments", body: body.to_json)
+        perform_cached_api_request("/shipments", method: :post, body: body.to_json)
       end
     end
   end

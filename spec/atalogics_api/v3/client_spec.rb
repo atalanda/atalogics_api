@@ -73,3 +73,23 @@ describe AtalogicsApi::V3::Client, '#shipments', :vcr do
     expect(AtalogicsApi.cache_store.keys).to be_empty
   end
 end
+
+describe AtalogicsApi::V3::Client, '#delivery_areas', :vcr do
+  include_context 'client_context'
+
+  let(:city_key) { "SALZBURG" }
+
+  it "returns delivery_areas either from cache or atalogics" do
+    response = client.delivery_areas city_key
+    expect(response.code).to eq(200)
+    expect(response.body["delivery_areas"]).to_not be_nil
+    expect(response.body["key"]).to eq city_key
+
+    expect(client.class).not_to receive(:get)
+
+    cached_response = client.delivery_areas city_key
+    expect(cached_response.code).to eq(response.code)
+    expect(cached_response.body).to eq(response.body)
+    expect(AtalogicsApi.cache_store.keys).to eq(["V3_/cities/#{city_key}"])
+  end
+end
