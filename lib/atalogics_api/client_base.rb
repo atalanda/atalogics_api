@@ -52,7 +52,7 @@ module AtalogicsApi
       auth.access_token
     end
 
-    private def perform_api_post *args, &block
+    private def perform_cached_api_request *args, &block
       cache_key = args[1].delete(:cache_key)
       if cache_key
         cache_key = namespace_cache_key cache_key
@@ -62,7 +62,11 @@ module AtalogicsApi
         return response if response && !expired
       end
 
-      response = perform_api_request(:post, *args, &block)
+      expires_at = args[1].delete(:expires_at)
+      response = perform_api_request(args[1].delete(:method), *args, &block)
+
+      response.body["expires_at"] = expires_at if expires_at
+
       store_cached_result(cache_key, response.code, response.body) if cache_key
       response
     end

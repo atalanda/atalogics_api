@@ -1,0 +1,103 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://172.17.0.1:3100/oauth/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"93d023afe005e51e71fee6d6d9e69a3bfa03550ca332ddc0e727967a0b3d2f1b","client_secret":"52915e2eff4f2fef3c01e15ee96a76fc790fe1db6899519cd31e79879399e8bb","grant_type":"client_credentials"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"ec85f496c1088433216a3944ae79dbae"
+      X-Request-Id:
+      - b706b14e-07f6-472a-863e-71b9d97ec140
+      X-Runtime:
+      - '0.015615'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Mon, 16 Oct 2017 13:31:08 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"6f31e29b9d1fd09fd2809b88a7ddf75e707e4620f38a0f378db967cb7142ac1e","token_type":"bearer","expires_in":172056,"created_at":1508159925}'
+    http_version: 
+  recorded_at: Mon, 16 Oct 2017 13:31:08 GMT
+- request:
+    method: get
+    uri: http://172.17.0.1:3100/api/v3/cities/SALZBURG/delivery_area
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - bearer 6f31e29b9d1fd09fd2809b88a7ddf75e707e4620f38a0f378db967cb7142ac1e
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '370'
+      Etag:
+      - W/"35e83006d660d3bff4542898f0becc48"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 7ac83e14-b384-469b-9517-2f2f42b75cd2
+      X-Runtime:
+      - '0.009621'
+      Vary:
+      - Origin
+      Connection:
+      - close
+      Server:
+      - thin
+      Date:
+      - Mon, 16 Oct 2017 13:31:08 GMT
+    body:
+      encoding: UTF-8
+      string: '{"name":"Salzburg","key":"SALZBURG","delivery_areas":[[[[13.036007881164549,47.81110826995923],[13.03553581237793,47.80845667430778],[13.037123680114746,47.805084340797585],[13.039140701293945,47.80251891483372],[13.04450511932373,47.800587555516934],[13.06617736816406,47.806929063178586],[13.06119918823242,47.81563296294047],[13.036007881164549,47.81110826995923]]]]}'
+    http_version: 
+  recorded_at: Mon, 16 Oct 2017 13:31:08 GMT
+recorded_with: VCR 3.0.3
