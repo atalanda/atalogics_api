@@ -9,6 +9,8 @@ module AtalogicsApi
   # @attr_reader [HTTParty::Response] response Raw http response of the auth process
   class Auth
     include HTTParty
+    default_timeout(DEFAULT_TIMEOUT)
+
     include SharedHelpers
     OAUTH_URL = '/oauth/token'
 

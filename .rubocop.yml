@@ -1,0 +1,23 @@
+AllCops:
+  TargetRubyVersion: 2.4.3
+
+LineLength:
+  Max: 100
+
+Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Gemspec/OrderedDependencies:
+  Enabled: false
