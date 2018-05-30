@@ -5,7 +5,7 @@ module AtalogicsApi
   # @attr_reader [Integer] code HTTP response code
   # @attr_reader [Hash] body Parsed response body
   class Response
-    class FailedError < Exception; end
+    class FailedError < StandardError; end
 
     attr_reader :code, :body
     def initialize code, body

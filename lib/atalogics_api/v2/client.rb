@@ -24,7 +24,7 @@ module AtalogicsApi
       def address_check parts
         url = "/addresses/single/check"
         cache_key = "#{url}_#{parts[:street]}_#{parts[:number]}_#{parts[:postal_code]}_#{parts[:city]}_#{parts[:lat]}_#{parts[:lng]}"
-        perform_cached_api_request(url, method: :post, body: parts.to_json, cache_key: cache_key)
+        post(url, body: parts.to_json, cache_key: cache_key)
       end
 
       # Performs an address check
@@ -36,7 +36,7 @@ module AtalogicsApi
         cache_key = addresses[:addresses].inject(url) do |key, address|
           "_#{key}_#{address[:city_key]}_#{address[:street]}_#{address[:number]}_#{address[:postal_code]}_#{address[:city]}_#{address[:lat]}_#{address[:lng]}"
         end
-        perform_cached_api_request(url, method: :post, body: addresses.to_json, cache_key: cache_key)
+        post(url, body: addresses.to_json, cache_key: cache_key)
       end
 
       # Wrapper for address check, which returns just a boolean value
@@ -64,10 +64,10 @@ module AtalogicsApi
         cache_key += "_from_#{body[:from]}" if body[:from]
         cache_key += "_to_#{body[:to]}" if body[:to]
 
-        perform_cached_api_request url, method: :post, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
+        post(url, body: body.to_json, cache_key: cache_key, expired?: ->(cached_result) {
           # a cached result expires when the current Time is after the first catch timeslots' bookable_till
           cached_result && Time.now > Time.parse(cached_result.body.first["catch_time_window"]["bookable_till"])
-        }
+        })
       end
 
       # Bang method for next_timeslots, raises an error when response code != 200
@@ -88,14 +88,14 @@ module AtalogicsApi
       # @param body [Hash] Hash with catch and drop information see docs
       # @return [HTTParty::Response]
       def offers body
-        perform_cached_api_request("/offers", method: :post, body: body.to_json)
+        post("/offers", body: body.to_json)
       end
 
       # Purchases a shipment, based on an offer_id
       # @param body [Hash] Hash with offer_id, catch and drop information, see docs
       # @return [HTTParty::Response]
       def purchase_offer body
-        perform_cached_api_request("/shipments", method: :post, body: body.to_json)
+        post("/shipments", body: body.to_json)
       end
     end
   end

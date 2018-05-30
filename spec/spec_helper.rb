@@ -5,6 +5,7 @@ require 'vcr'
 require 'atalogics_api'
 require 'timecop'
 require 'redis'
+require "webmock/rspec"
 
 RSpec.configure do |config|
   config.order = 'random'
