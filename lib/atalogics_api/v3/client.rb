@@ -43,7 +43,12 @@ module AtalogicsApi
       # @return [HTTParty::Response]
       def offers!(body)
         response = offers body
-        raise Response::FailedError, response if response.code != 200
+        if response.code != 200
+          raise(
+            Response::FailedError,
+            request_body: body, response_body: response.body, response_code: response.code
+          )
+        end
         response
       end
 
