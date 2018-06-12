@@ -23,8 +23,10 @@ describe AtalogicsApi::SharedHelpers do
         response = double("response", code: code, body: "Foobar")
         dummy = Dummy.new
         expect do
-          dummy.raise_if_error(response)
-        end.to raise_error error_class, /#{response.body}/
+          dummy.raise_if_error(response, :get, "/some-url", body: { some: "request" })
+        end.to raise_error(
+          error_class, { response_body: response.body, response_code: code, method: :get, url: "/some-url", options: { body: { some: "request" } } }.to_s
+        )
       end
     end
 

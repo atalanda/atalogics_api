@@ -10,6 +10,7 @@ end
 describe AtalogicsApi::V3::Client, "#offers", :vcr do
   include_context "client_context"
 
+  let(:url) { "#{AtalogicsApi.api_url_v3}/offers" }
   let(:body) { { catch_address: "Auerspergstr 44 Salzburg", drop_address: "Getreidegasse 24 Salzburg" } }
 
   it "returns offers" do
@@ -55,7 +56,23 @@ describe AtalogicsApi::V3::Client, "#offers", :vcr do
     end
 
     it "raises an error when response.code != 200" do
-      expect { client.offers!({}) }.to raise_error AtalogicsApi::Response::FailedError
+      stub_request(:post, url).to_return(
+        status: 400, body: { some: "errors" }.to_json, headers: { "Content-Type" => "application/json" }
+      )
+
+      request_body = { some: "request" }
+      expect do
+        client.offers!(request_body)
+      end.to raise_error(
+        AtalogicsApi::Response::FailedError,
+        {
+          response_body: { "some" => "errors" },
+          response_code: 400,
+          method: :post,
+          url: "/offers",
+          options: { body: request_body }
+        }.to_s
+      )
     end
   end
 end

@@ -44,10 +44,7 @@ module AtalogicsApi
       def offers!(body)
         response = offers body
         if response.code != 200
-          raise(
-            Response::FailedError,
-            request_body: body, response_body: response.body, response_code: response.code
-          )
+          raise_error(Response::FailedError, response, :post, "/offers", body: body)
         end
         response
       end
