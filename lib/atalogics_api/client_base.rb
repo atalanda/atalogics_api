@@ -85,21 +85,21 @@ module AtalogicsApi
       response = AtalogicsApi::Response.new(response.code, response.parsed_response)
 
       catch(:access_token_refreshed) do
-        check_response(response)
+        check_response(response, method, url, options)
         return response
       end
 
       perform_http_request(method, url, options) # perform again with refreshed access_token
     end
 
-    private def check_response(response)
-      raise_if_error response
+    private def check_response(*args)
+      raise_if_error(*args)
     rescue Errors::AuthenticationFailed
       if @auto_refresh_access_token
         refresh_access_token
         throw(:access_token_refreshed)
       end
-      raise_if_error response
+      raise_if_error(*args)
     end
 
     private def get_cached_result(key)

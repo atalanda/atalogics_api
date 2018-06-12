@@ -5,10 +5,10 @@ module AtalogicsApi
       self.class.headers 'Content-Type' => 'application/json'
     end
 
-    def raise_if_error response
-      code = response.code
-      raise Errors::AuthenticationFailed, response.body if code==401 || code==403
-      raise Errors::ApiError, response.body if code==500
+    def raise_if_error(*args)
+      code = args.first.code
+      raise_error(Errors::AuthenticationFailed, *args) if code==401 || code==403
+      raise_error(Errors::ApiError, *args) if code==500
 
       # raise a generic error for every status code that we don't expect
       # 200 -> get
@@ -16,7 +16,18 @@ module AtalogicsApi
       # 400 -> validation of parameters failed
       # 404 -> e.g. city not found
       known_response_codes = [200, 201, 400, 404]
-      raise Errors::GenericError, response.body unless known_response_codes.include?(code)
+      raise_error(Errors::GenericError, *args) unless known_response_codes.include?(code)
+    end
+
+    def raise_error(error_class, response, method, url, options)
+      raise(
+        error_class,
+        response_body: response.body,
+        response_code: response.code,
+        method: method,
+        url: url,
+        options: options
+      )
     end
   end
 end
