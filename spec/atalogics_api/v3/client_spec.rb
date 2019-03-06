@@ -49,6 +49,32 @@ describe AtalogicsApi::V3::Client, "#offers", :vcr do
     expect(AtalogicsApi.cache_store.get(cache_key)).to eq('[200,{"new":"response"}]')
   end
 
+  context "without offers" do
+    before do
+      # Because request is made before cache gets checked
+      stub_request(:post, "http://192.168.99.100:3100/oauth/token").to_return(
+        body: {
+          "access_token": "790c2025aa5d4dd1e99e86b8b8616012e411548616e0cfadf562f92817c264a9",
+          "token_type": "bearer",
+          "expires_in": 171_957,
+          "created_at": 1_497_006_838
+        }.to_json
+      )
+
+      stub_request(:post, "http://192.168.99.100:3100/api/v3/offers").to_return(
+        body: '{ "new": "response" }'
+      )
+
+      cache_key = "V3_/offers_Auerspergstr 44 Salzburg_Getreidegasse 24 Salzburg"
+      cached_body = { "offers" => [] }
+      AtalogicsApi.cache_store.set(cache_key, [200, cached_body].to_json)
+    end
+
+    it "doesn't raise an error" do
+      expect { client.offers body }.not_to raise_error
+    end
+  end
+
   describe "#offers!", :vcr do
     it "wraps next_timeslots" do
       response = client.offers! body

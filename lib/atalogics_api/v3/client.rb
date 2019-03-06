@@ -31,9 +31,12 @@ module AtalogicsApi
 
       private def offer_expired?
         ->(cached_result) {
+          return true unless cached_result
+          return true unless offer = cached_result.body["offers"].first
+
           # a cached result expires when the current Time is
           # after the first offer["catch_window"]["usable_till"]
-          cached_result && Time.now > Time.parse(cached_result.body["offers"].first["catch_window"]["usable_till"])
+          Time.now > Time.parse(offer.fetch("catch_window").fetch("usable_till"))
         }
       end
 
