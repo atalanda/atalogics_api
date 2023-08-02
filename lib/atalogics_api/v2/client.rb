@@ -34,7 +34,7 @@ module AtalogicsApi
       def multi_address_check addresses
         url = "/addresses/multi/check"
         cache_key = addresses[:addresses].inject(url) do |key, address|
-          "_#{key}_#{address[:city_key]}_#{address[:street]}_#{address[:number]}_#{address[:postal_code]}_#{address[:city]}_#{address[:lat]}_#{address[:lng]}"
+          "_#{key}_#{address[:city_key]}_#{address[:street]}_#{address[:number]}_#{address[:postal_code]}_#{address[:city]}_#{address[:country]}_#{address[:lat]}_#{address[:lng]}"
         end
         post(url, body: addresses.to_json, cache_key: cache_key)
       end

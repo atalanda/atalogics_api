@@ -51,14 +51,14 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"access_token":"fd147beea01201d529d124ec5d224fcfec270f44d90926178e18c20c8720dae7","token_type":"bearer","expires_in":167847,"created_at":1496821144}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 - request:
     method: post
     uri: http://192.168.99.100:3100/api/v2/addresses/multi/check
     body:
       encoding: UTF-8
-      string: '{"addresses":[{"lat":47.8065258,"lng":13.0474424},{"street":"Radetzkystrasse","number":"7","postal_code":5020,"city":"Salzburg"}]}'
+      string: '{"addresses":[{"lat":47.8065258,"lng":13.0474424},{"street":"Radetzkystrasse","number":"7","postal_code":5020,"city":"Salzburg","country":"AT"}]}'
     headers:
       Accept:
       - application/json
@@ -98,6 +98,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"success":true,"same_area":true,"existent":true}'
-    http_version: 
+    http_version:
   recorded_at: Tue, 02 Feb 2016 11:00:01 GMT
 recorded_with: VCR 2.9.3

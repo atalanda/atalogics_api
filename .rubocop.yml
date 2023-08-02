@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.4.3
+  TargetRubyVersion: 3.2.1
 
 LineLength:
   Max: 100

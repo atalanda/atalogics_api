@@ -1,5 +1,4 @@
-# ruby 2.2.7
-FROM ruby:2.4.3-stretch
+FROM ruby:3.2.1-bullseye
 
 WORKDIR /usr/src/app/
 COPY . /usr/src/app/

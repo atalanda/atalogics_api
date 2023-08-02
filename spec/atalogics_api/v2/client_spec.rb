@@ -26,7 +26,7 @@ describe AtalogicsApi::V2::Client, 'endpoints' do
       addresses = {
         addresses: [
           {lat: 47.8065258, lng: 13.0474424},
-          {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg"}
+          {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg", country: "AT"}
         ]
       }
       response = client.multi_address_check addresses
@@ -200,10 +200,10 @@ describe AtalogicsApi::V2::Client, 'cached requests' do
     let(:body) {{
       addresses: [
         {lat: 47.8065258, lng: 13.0474424, city_key: "SALZBURG"},
-        {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg", city_key: "SALZBURG"}
+        {street: "Radetzkystrasse", number: "7", postal_code: 5020, city: "Salzburg", city_key: "SALZBURG", country: "AT"}
       ]
     }}
-    let(:cache_key) { "V2___/addresses/multi/check_SALZBURG_____47.8065258_13.0474424_SALZBURG_Radetzkystrasse_7_5020_Salzburg__" }
+    let(:cache_key) { "V2___/addresses/multi/check_SALZBURG______47.8065258_13.0474424_SALZBURG_Radetzkystrasse_7_5020_Salzburg_AT__" }
 
     it_behaves_like 'cached_response'
   end
